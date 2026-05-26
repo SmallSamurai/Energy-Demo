@@ -18,13 +18,13 @@ export default function SolutionsSidebar({ active, onNavigate }: Props) {
           </div>
           <div>
             <div className="text-gray-900 font-bold text-sm leading-tight">Shell Energy</div>
-            <div className="text-gray-400 text-[10px] leading-tight tracking-wider uppercase">Energy Solutions</div>
+            <div className="text-gray-600 text-[10px] leading-tight tracking-wider uppercase">Energy Solutions</div>
           </div>
         </div>
       </div>
 
       <nav className="flex-1 px-3 py-4 space-y-0.5">
-        <div className="text-[10px] text-gray-400 uppercase tracking-widest px-3 mb-2 pt-1">Explore</div>
+        <div className="text-[10px] text-gray-600 uppercase tracking-widest px-3 mb-2 pt-1">Explore</div>
         {nav.map(({ id, label, icon: Icon, sub }) => (
           <button
             key={id}
@@ -32,34 +32,34 @@ export default function SolutionsSidebar({ active, onNavigate }: Props) {
             className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
               active === id
                 ? 'bg-[#FBCE07]/20 text-gray-900 font-semibold'
-                : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
             }`}
           >
             <div className="flex items-center gap-3">
-              <Icon size={16} className={active === id ? 'text-gray-800' : 'text-gray-400'} />
+              <Icon size={16} className={active === id ? 'text-gray-800' : 'text-gray-600'} />
               <div className="text-left">
                 <div className="text-xs leading-tight">{label}</div>
-                <div className="text-[10px] text-gray-400 leading-tight">{sub}</div>
+                <div className="text-[10px] text-gray-600 leading-tight">{sub}</div>
               </div>
             </div>
-            {active === id && <ChevronRight size={12} className="text-gray-500" />}
+            {active === id && <ChevronRight size={12} className="text-gray-600" />}
           </button>
         ))}
 
-        <div className="text-[10px] text-gray-400 uppercase tracking-widest px-3 mt-5 mb-2">AI Assistant</div>
+        <div className="text-[10px] text-gray-600 uppercase tracking-widest px-3 mt-5 mb-2">AI Assistant</div>
         <button
           onClick={() => onNavigate('agent')}
           className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
             active === 'agent'
               ? 'bg-[#FBCE07]/20 text-gray-900 font-semibold'
-              : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
           }`}
         >
           <div className="flex items-center gap-3">
-            <BrainCircuit size={16} className={active === 'agent' ? 'text-gray-800' : 'text-gray-400'} />
+            <BrainCircuit size={16} className={active === 'agent' ? 'text-gray-800' : 'text-gray-600'} />
             <div className="text-left">
               <div className="text-xs leading-tight">Solutions Advisor</div>
-              <div className="text-[10px] text-gray-400">Recommend & explain</div>
+              <div className="text-[10px] text-gray-600">Recommend & explain</div>
             </div>
           </div>
           <span className="text-[10px] bg-[#FBCE07] text-[#111827] px-1.5 py-0.5 rounded font-bold">MCP</span>

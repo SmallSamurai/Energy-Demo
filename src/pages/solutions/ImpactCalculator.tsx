@@ -29,7 +29,7 @@ export default function ImpactCalculator() {
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all border ${
               activeCalc === c.id
                 ? 'text-[#0A0E1A] border-transparent'
-                : 'bg-white border-gray-200 text-gray-500 hover:text-gray-900 hover:border-gray-200'
+                : 'bg-white border-gray-200 text-gray-600 hover:text-gray-900 hover:border-gray-200'
             }`}
             style={activeCalc === c.id ? { backgroundColor: c.color, borderColor: c.color } : {}}
           >
@@ -97,7 +97,7 @@ function SolarCalc() {
       <div className="col-span-2 space-y-4">
         <div className="bg-white rounded-xl p-5 border border-gray-200">
           <h3 className="text-white font-semibold text-sm mb-1">25-Year Cumulative Cashflow</h3>
-          <p className="text-gray-400 text-xs mb-4">Break-even at Year {breakEvenYear} · IRR ~{(100 / payback * 0.85).toFixed(0)}%</p>
+          <p className="text-gray-600 text-xs mb-4">Break-even at Year {breakEvenYear} · IRR ~{(100 / payback * 0.85).toFixed(0)}%</p>
           <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={cashflowData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
               <defs>
@@ -107,8 +107,8 @@ function SolarCalc() {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
-              <XAxis dataKey="year" tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} interval={4} />
-              <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
+              <XAxis dataKey="year" tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} interval={4} />
+              <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
               <Tooltip contentStyle={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: 8, fontSize: 11 }} formatter={(v) => [`$${(Number(v) / 1000).toFixed(1)}k`]} />
               <ReferenceLine y={0} stroke="#374151" strokeDasharray="4 4" />
               <Area type="monotone" dataKey="cumulative" stroke="#FBCE07" strokeWidth={2} fill="url(#solarCFGrad)" name="Cumulative P&L" />
@@ -118,7 +118,7 @@ function SolarCalc() {
 
         <div className="bg-white rounded-xl p-5 border border-gray-200">
           <h3 className="text-white font-semibold text-sm mb-1">Annual Revenue Breakdown</h3>
-          <p className="text-gray-400 text-xs mb-4">Self-consumption saving vs. export revenue</p>
+          <p className="text-gray-600 text-xs mb-4">Self-consumption saving vs. export revenue</p>
           <div className="flex gap-8">
             <div className="flex-1">
               <div className="space-y-3">
@@ -127,9 +127,9 @@ function SolarCalc() {
               </div>
             </div>
             <div className="text-center">
-              <p className="text-gray-400 text-xs mb-1">Self-sufficiency</p>
+              <p className="text-gray-600 text-xs mb-1">Self-sufficiency</p>
               <p className="text-3xl font-bold" style={{ color: '#FBCE07' }}>{Math.min(100, Math.round((selfConsume / annualConsumption) * 100))}%</p>
-              <p className="text-gray-400 text-[10px]">of annual demand</p>
+              <p className="text-gray-600 text-[10px]">of annual demand</p>
             </div>
           </div>
         </div>
@@ -193,11 +193,11 @@ function BessCalc() {
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-white rounded-xl p-5 border border-gray-200">
             <h3 className="text-white font-semibold text-sm mb-1">Revenue Streams</h3>
-            <p className="text-gray-400 text-xs mb-4">Annual income by source</p>
+            <p className="text-gray-600 text-xs mb-4">Annual income by source</p>
             <ResponsiveContainer width="100%" height={160}>
               <BarChart data={revenueData} layout="vertical" margin={{ top: 5, right: 10, bottom: 0, left: 20 }}>
-                <XAxis type="number" tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
-                <YAxis type="category" dataKey="name" tick={{ fill: '#9CA3AF', fontSize: 11 }} tickLine={false} axisLine={false} width={90} />
+                <XAxis type="number" tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
+                <YAxis type="category" dataKey="name" tick={{ fill: '#4B5563', fontSize: 11 }} tickLine={false} axisLine={false} width={90} />
                 <Tooltip contentStyle={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: 8, fontSize: 11 }} formatter={(v) => [`$${(Number(v) / 1000).toFixed(1)}k`]} />
                 <Bar dataKey="value" radius={[0, 4, 4, 0]}>
                   {revenueData.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}
@@ -208,12 +208,12 @@ function BessCalc() {
 
           <div className="bg-white rounded-xl p-5 border border-gray-200">
             <h3 className="text-white font-semibold text-sm mb-1">Tariff Spread Sensitivity</h3>
-            <p className="text-gray-400 text-xs mb-4">Revenue vs. peak/off-peak spread</p>
+            <p className="text-gray-600 text-xs mb-4">Revenue vs. peak/off-peak spread</p>
             <ResponsiveContainer width="100%" height={160}>
               <LineChart data={sensitivityData} margin={{ top: 5, right: 10, bottom: 0, left: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
-                <XAxis dataKey="spread" tick={{ fill: '#6B7280', fontSize: 9 }} tickLine={false} interval={2} />
-                <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
+                <XAxis dataKey="spread" tick={{ fill: '#4B5563', fontSize: 9 }} tickLine={false} interval={2} />
+                <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
                 <Tooltip contentStyle={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: 8, fontSize: 11 }} formatter={(v) => [`$${(Number(v) / 1000).toFixed(1)}k`]} />
                 <Line type="monotone" dataKey="revenue" stroke="#10B981" strokeWidth={2} dot={false} />
               </LineChart>
@@ -227,9 +227,9 @@ function BessCalc() {
             {revenueData.map((r, i) => (
               <div key={r.name} className="bg-white rounded-lg p-3 border border-gray-200">
                 <div className="w-2 h-2 rounded-full mb-2" style={{ backgroundColor: COLORS[i] }} />
-                <p className="text-gray-400 text-xs">{r.name}</p>
+                <p className="text-gray-600 text-xs">{r.name}</p>
                 <p className="text-white font-bold mt-1">${(r.value / 1000).toFixed(1)}k/yr</p>
-                <p className="text-gray-400 text-[10px]">{((r.value / totalRevenue) * 100).toFixed(0)}% of total</p>
+                <p className="text-gray-600 text-[10px]">{((r.value / totalRevenue) * 100).toFixed(0)}% of total</p>
               </div>
             ))}
           </div>
@@ -282,12 +282,12 @@ function PpaCalc() {
       <div className="col-span-2 space-y-4">
         <div className="bg-white rounded-xl p-5 border border-gray-200">
           <h3 className="text-white font-semibold text-sm mb-1">PPA vs. Market Price Over Contract Term</h3>
-          <p className="text-gray-400 text-xs mb-4">Assumes 4% market escalation vs. {escalator}% PPA escalator</p>
+          <p className="text-gray-600 text-xs mb-4">Assumes 4% market escalation vs. {escalator}% PPA escalator</p>
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={termData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
-              <XAxis dataKey="year" tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} />
-              <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${v}`} />
+              <XAxis dataKey="year" tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} />
+              <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${v}`} />
               <Tooltip contentStyle={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: 8, fontSize: 11 }} formatter={(v) => [`$${v}/MWh`]} />
               <Line type="monotone" dataKey="market" stroke="#DD1D21" strokeWidth={2} dot={false} name="Market price" />
               <Line type="monotone" dataKey="ppa" stroke="#3B82F6" strokeWidth={2} dot={false} name="PPA price" />
@@ -299,8 +299,8 @@ function PpaCalc() {
           <ResponsiveContainer width="100%" height={150}>
             <BarChart data={termData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" vertical={false} />
-              <XAxis dataKey="year" tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} />
-              <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
+              <XAxis dataKey="year" tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} />
+              <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
               <Tooltip contentStyle={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: 8, fontSize: 11 }} formatter={(v) => [`$${(Number(v) / 1000).toFixed(0)}k`]} />
               <Bar dataKey="saving" fill="#3B82F6" radius={[3, 3, 0, 0]} name="Annual saving" />
             </BarChart>
@@ -350,7 +350,7 @@ function HvacCalc() {
       <div className="col-span-2">
         <div className="bg-white rounded-xl p-5 border border-gray-200 h-full">
           <h3 className="text-white font-semibold text-sm mb-1">Monthly Flexibility Revenue</h3>
-          <p className="text-gray-400 text-xs mb-4">Higher in summer (cooling) and winter (heating) peaks</p>
+          <p className="text-gray-600 text-xs mb-4">Higher in summer (cooling) and winter (heating) peaks</p>
           <ResponsiveContainer width="100%" height={280}>
             <BarChart data={monthlyData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
               <defs>
@@ -360,8 +360,8 @@ function HvacCalc() {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" vertical={false} />
-              <XAxis dataKey="month" tick={{ fill: '#6B7280', fontSize: 11 }} tickLine={false} />
-              <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
+              <XAxis dataKey="month" tick={{ fill: '#4B5563', fontSize: 11 }} tickLine={false} />
+              <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
               <Tooltip contentStyle={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: 8, fontSize: 11 }} formatter={(v) => [`$${(Number(v) / 1000).toFixed(1)}k`]} />
               <Bar dataKey="saving" fill="url(#hvacGrad)" radius={[4, 4, 0, 0]} name="Monthly saving" />
             </BarChart>
@@ -411,27 +411,27 @@ function EvCalc() {
       <div className="col-span-2">
         <div className="bg-white rounded-xl p-5 border border-gray-200 h-full">
           <h3 className="text-white font-semibold text-sm mb-1">Smart vs. Unmanaged Charging Cost</h3>
-          <p className="text-gray-400 text-xs mb-4">{offPeakPct}% off-peak charging shifts ${(annualSaving / 1000).toFixed(0)}k/yr in cost</p>
+          <p className="text-gray-600 text-xs mb-4">{offPeakPct}% off-peak charging shifts ${(annualSaving / 1000).toFixed(0)}k/yr in cost</p>
           <div className="flex gap-8 items-end mb-6">
             <CostBar label="Unmanaged" value={dumbCost} max={dumbCost} color="#DD1D21" />
             <CostBar label="Smart charging" value={smartCost} max={dumbCost} color="#8B5CF6" />
             <div className="text-center pb-2">
-              <p className="text-gray-400 text-xs mb-1">Annual saving</p>
+              <p className="text-gray-600 text-xs mb-1">Annual saving</p>
               <p className="text-3xl font-bold text-green-400">${(annualSaving / 1000).toFixed(0)}k</p>
-              <p className="text-gray-400 text-xs">{((annualSaving / dumbCost) * 100).toFixed(0)}% reduction</p>
+              <p className="text-gray-600 text-xs">{((annualSaving / dumbCost) * 100).toFixed(0)}% reduction</p>
             </div>
           </div>
           <div className="grid grid-cols-3 gap-3 text-xs">
             <div className="bg-white rounded-lg p-3 border border-gray-200">
-              <p className="text-gray-400">Total annual kWh</p>
+              <p className="text-gray-600">Total annual kWh</p>
               <p className="text-white font-bold mt-1">{(annualKwh / 1000).toFixed(0)} MWh</p>
             </div>
             <div className="bg-white rounded-lg p-3 border border-gray-200">
-              <p className="text-gray-400">Off-peak kWh</p>
+              <p className="text-gray-600">Off-peak kWh</p>
               <p className="text-white font-bold mt-1">{(offPeakKwh / 1000).toFixed(0)} MWh ({offPeakPct}%)</p>
             </div>
             <div className="bg-white rounded-lg p-3 border border-gray-200">
-              <p className="text-gray-400">Cost per vehicle</p>
+              <p className="text-gray-600">Cost per vehicle</p>
               <p className="text-white font-bold mt-1">${(smartCost / vehicles).toFixed(0)}/yr</p>
             </div>
           </div>
@@ -480,17 +480,17 @@ function EfficiencyCalc() {
       <div className="col-span-2">
         <div className="bg-white rounded-xl p-5 border border-gray-200 h-full">
           <h3 className="text-white font-semibold text-sm mb-1">Typical Saving Breakdown by Category</h3>
-          <p className="text-gray-400 text-xs mb-4">Based on Shell Energy US DOE Better Buildings benchmarks</p>
+          <p className="text-gray-600 text-xs mb-4">Based on Shell Energy US DOE Better Buildings benchmarks</p>
           <div className="space-y-4">
             {breakdownData.map((d, i) => (
               <div key={d.name}>
                 <div className="flex items-center justify-between text-xs mb-1.5">
                   <div className="flex items-center gap-2">
                     <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: COLORS[i] }} />
-                    <span className="text-gray-500">{d.name}</span>
+                    <span className="text-gray-600">{d.name}</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-gray-400">{d.pct}%</span>
+                    <span className="text-gray-600">{d.pct}%</span>
                     <span className="text-white font-medium w-20 text-right">${(d.saving / 1000).toFixed(0)}k/yr</span>
                   </div>
                 </div>
@@ -500,7 +500,7 @@ function EfficiencyCalc() {
               </div>
             ))}
             <div className="border-t border-gray-200 pt-3 flex justify-between text-sm">
-              <span className="text-gray-500">Total annual saving</span>
+              <span className="text-gray-600">Total annual saving</span>
               <span className="text-white font-bold">${(annualSaving / 1000).toFixed(0)}k ({reductionPct}%)</span>
             </div>
           </div>
@@ -531,7 +531,7 @@ function SliderInput({ label, value, min, max, step, unit, onChange, color }: {
   return (
     <div>
       <div className="flex justify-between text-xs mb-1.5">
-        <span className="text-gray-500">{label}</span>
+        <span className="text-gray-600">{label}</span>
         <span className="font-medium" style={{ color }}>{value.toLocaleString()} {unit}</span>
       </div>
       <input
@@ -540,7 +540,7 @@ function SliderInput({ label, value, min, max, step, unit, onChange, color }: {
         className="w-full h-1.5 rounded-full appearance-none cursor-pointer"
         style={{ accentColor: color, background: `linear-gradient(to right, ${color} 0%, ${color} ${pct}%, #1F2937 ${pct}%, #1F2937 100%)` }}
       />
-      <div className="flex justify-between text-[9px] text-gray-400 mt-0.5">
+      <div className="flex justify-between text-[9px] text-gray-600 mt-0.5">
         <span>{min.toLocaleString()}</span><span>{max.toLocaleString()}</span>
       </div>
     </div>
@@ -550,7 +550,7 @@ function SliderInput({ label, value, min, max, step, unit, onChange, color }: {
 function ResultTile({ label, value, color, big }: { label: string; value: string; color: string; big?: boolean }) {
   return (
     <div className="bg-white rounded-lg p-3 border border-gray-200">
-      <p className="text-gray-400 text-[10px] mb-1">{label}</p>
+      <p className="text-gray-600 text-[10px] mb-1">{label}</p>
       <p className={`font-bold ${big ? 'text-xl' : 'text-sm'}`} style={{ color }}>{value}</p>
     </div>
   )
@@ -559,7 +559,7 @@ function ResultTile({ label, value, color, big }: { label: string; value: string
 function RevenueBar({ label, value, total, color }: { label: string; value: number; total: number; color: string }) {
   return (
     <div className="flex-1">
-      <p className="text-gray-500 text-xs mb-2">{label}</p>
+      <p className="text-gray-600 text-xs mb-2">{label}</p>
       <div className="flex items-end gap-2">
         <div className="w-16 rounded-t-lg" style={{ height: `${(value / total) * 120}px`, backgroundColor: color }} />
         <p className="text-white text-sm font-bold pb-1">${(value / 1000).toFixed(0)}k/yr</p>
@@ -573,7 +573,7 @@ function CostBar({ label, value, max, color }: { label: string; value: number; m
     <div className="flex flex-col items-center gap-2">
       <p className="text-white text-sm font-bold">${(value / 1000).toFixed(0)}k</p>
       <div className="w-16 rounded-t-lg" style={{ height: `${(value / max) * 120}px`, backgroundColor: color }} />
-      <p className="text-gray-500 text-xs">{label}</p>
+      <p className="text-gray-600 text-xs">{label}</p>
     </div>
   )
 }

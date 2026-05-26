@@ -75,7 +75,7 @@ function ModeToggle({ mode, onSwitch }: { mode: AppMode; onSwitch: (m: AppMode) 
       <button
         onClick={() => onSwitch('wholesale')}
         className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-          mode === 'wholesale' ? 'bg-[#FBCE07] text-[#0A0E1A] shadow-sm' : 'text-gray-500 hover:text-gray-800'
+          mode === 'wholesale' ? 'bg-[#FBCE07] text-[#0A0E1A] shadow-sm' : 'text-gray-600 hover:text-gray-800'
         }`}
       >
         <span>📈</span> Wholesale Trading
@@ -83,7 +83,7 @@ function ModeToggle({ mode, onSwitch }: { mode: AppMode; onSwitch: (m: AppMode) 
       <button
         onClick={() => onSwitch('solutions')}
         className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-          mode === 'solutions' ? 'bg-[#FBCE07] text-[#0A0E1A] shadow-sm' : 'text-gray-500 hover:text-gray-800'
+          mode === 'solutions' ? 'bg-[#FBCE07] text-[#0A0E1A] shadow-sm' : 'text-gray-600 hover:text-gray-800'
         }`}
       >
         <span>⚡</span> Energy Solutions

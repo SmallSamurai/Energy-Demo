@@ -12,7 +12,7 @@ export default function SolutionsHeader({ page }: { page: string }) {
       <div className="flex items-center gap-3">
         <div>
           <h1 className="text-gray-900 font-bold text-base leading-tight">{meta.title}</h1>
-          <p className="text-gray-500 text-xs">{meta.subtitle}</p>
+          <p className="text-gray-600 text-xs">{meta.subtitle}</p>
         </div>
         {meta.badge && (
           <span className="text-[10px] bg-[#FBCE07]/20 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full font-semibold">
@@ -20,7 +20,7 @@ export default function SolutionsHeader({ page }: { page: string }) {
           </span>
         )}
       </div>
-      <div className="flex items-center gap-3 text-xs text-gray-400">
+      <div className="flex items-center gap-3 text-xs text-gray-600">
         <span>Shell Energy Solutions</span>
         <div className="w-1.5 h-1.5 rounded-full bg-[#FBCE07]" />
         <span className="text-gray-700 font-medium">US Commercial</span>

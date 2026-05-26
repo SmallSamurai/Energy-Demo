@@ -226,13 +226,13 @@ export default function SolutionsAgent() {
             </div>
             <div>
               <div className="text-white font-semibold text-sm">Shell Energy Solutions Advisor</div>
-              <div className="flex items-center gap-1.5 text-gray-400 text-xs">
+              <div className="flex items-center gap-1.5 text-gray-600 text-xs">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                 Connected to {MCP_TOOLS.length} MCP sources · 8 solutions in catalogue
               </div>
             </div>
           </div>
-          <button onClick={() => { setMessages([]); setActiveTools([]) }} className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-900 px-2 py-1 rounded hover:bg-gray-100 transition-colors">
+          <button onClick={() => { setMessages([]); setActiveTools([]) }} className="flex items-center gap-1.5 text-xs text-gray-600 hover:text-gray-900 px-2 py-1 rounded hover:bg-gray-100 transition-colors">
             <RefreshCw size={12} /> New
           </button>
         </div>
@@ -245,7 +245,7 @@ export default function SolutionsAgent() {
                 <BrainCircuit size={28} className="text-[#FBCE07]" />
               </div>
               <h3 className="text-white font-semibold text-lg mb-2">Solutions Advisor</h3>
-              <p className="text-gray-400 text-sm max-w-md leading-relaxed mb-8">
+              <p className="text-gray-600 text-sm max-w-md leading-relaxed mb-8">
                 Get personalised energy solutions recommendations, ROI modelling, carbon impact analysis and deployment strategy — powered by Shell Energy's MCP data tools.
               </p>
               <div className="grid grid-cols-2 gap-2 w-full max-w-xl">
@@ -254,7 +254,7 @@ export default function SolutionsAgent() {
                     className="text-left p-3 rounded-lg bg-white border border-gray-200 hover:border-[#FBCE07]/30 hover:bg-[#FBCE07]/5 transition-all group">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-sm">{q.icon}</span>
-                      <span className="text-[10px] text-gray-400 uppercase tracking-wide">{q.category}</span>
+                      <span className="text-[10px] text-gray-600 uppercase tracking-wide">{q.category}</span>
                     </div>
                     <p className="text-gray-700 text-xs group-hover:text-gray-900 transition-colors">{q.label}</p>
                   </button>
@@ -278,12 +278,12 @@ export default function SolutionsAgent() {
                 )}
                 <div className={`rounded-xl px-4 py-3 ${msg.role === 'user' ? 'bg-[#FBCE07]/10 border border-[#FBCE07]/20 text-white' : 'bg-white border border-gray-200 text-gray-700'}`}>
                   <MarkdownText content={msg.content} />
-                  <p className="text-[10px] text-gray-400 mt-2">{msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                  <p className="text-[10px] text-gray-600 mt-2">{msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
                 </div>
               </div>
               {msg.role === 'user' && (
                 <div className="w-7 h-7 rounded-full bg-[#374151] flex items-center justify-center flex-shrink-0 mt-1">
-                  <User size={13} className="text-gray-500" />
+                  <User size={13} className="text-gray-600" />
                 </div>
               )}
             </div>
@@ -318,7 +318,7 @@ export default function SolutionsAgent() {
               <Send size={16} className="text-[#0A0E1A]" />
             </button>
           </div>
-          <p className="text-[10px] text-gray-400 mt-2 text-center">MCP-connected · solutions catalogue · impact model · carbon registry · market signals</p>
+          <p className="text-[10px] text-gray-600 mt-2 text-center">MCP-connected · solutions catalogue · impact model · carbon registry · market signals</p>
         </div>
       </div>
 
@@ -335,7 +335,7 @@ export default function SolutionsAgent() {
                 <div className="w-1.5 h-1.5 rounded-full bg-green-400 mt-1.5 flex-shrink-0" />
                 <div>
                   <p className="text-gray-700 text-[11px] font-medium">{t.label}</p>
-                  <p className="text-gray-400 text-[10px]">{t.description}</p>
+                  <p className="text-gray-600 text-[10px]">{t.description}</p>
                 </div>
               </div>
             ))}
@@ -347,7 +347,7 @@ export default function SolutionsAgent() {
           <div className="space-y-1.5">
             {SUGGESTED.slice(4).map(q => (
               <button key={q.label} onClick={() => send(q.label)} disabled={isTyping}
-                className="w-full text-left text-[10px] text-gray-500 hover:text-gray-900 flex items-start gap-1.5 py-1 px-1.5 rounded hover:bg-gray-100 transition-all disabled:opacity-40">
+                className="w-full text-left text-[10px] text-gray-600 hover:text-gray-900 flex items-start gap-1.5 py-1 px-1.5 rounded hover:bg-gray-100 transition-all disabled:opacity-40">
                 <ChevronRight size={9} className="mt-0.5 flex-shrink-0 text-[#FBCE07]" />
                 {q.label}
               </button>
@@ -367,8 +367,8 @@ function ToolBubble({ tc }: { tc: ToolCall }) {
         : <div className="w-2 h-2 rounded-full bg-green-400 mt-1 flex-shrink-0" />}
       <div>
         <span className="text-[#FBCE07] font-medium">{tc.label}</span>
-        <span className="text-gray-400 ml-1">— {tc.description}</span>
-        {tc.status === 'complete' && tc.result && <p className="text-gray-500 mt-0.5 text-[10px]">↳ {tc.result}</p>}
+        <span className="text-gray-600 ml-1">— {tc.description}</span>
+        {tc.status === 'complete' && tc.result && <p className="text-gray-600 mt-0.5 text-[10px]">↳ {tc.result}</p>}
       </div>
     </div>
   )

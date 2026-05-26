@@ -39,7 +39,7 @@ export default function MarketOverview() {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-white font-semibold text-sm">ERCOT Power — Intraday Price</h2>
-              <p className="text-gray-400 text-xs mt-0.5">Half-hourly settlement prices vs. forecast ($/MWh)</p>
+              <p className="text-gray-600 text-xs mt-0.5">Half-hourly settlement prices vs. forecast ($/MWh)</p>
             </div>
             <div className="flex items-center gap-3 text-xs">
               <LegendDot color={YELLOW} label="Actual" />
@@ -55,8 +55,8 @@ export default function MarketOverview() {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
-              <XAxis dataKey="time" tickFormatter={fmt} tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} interval={5} />
-              <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${v}`} />
+              <XAxis dataKey="time" tickFormatter={fmt} tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} interval={5} />
+              <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${v}`} />
               <Tooltip content={<CustomTooltip unit="$/MWh" />} />
               <ReferenceLine x={now} stroke="#DD1D21" strokeDasharray="4 4" label={{ value: 'NOW', fill: '#DD1D21', fontSize: 9 }} />
               <Area type="monotone" dataKey="value" stroke={YELLOW} strokeWidth={2} fill="url(#powerGrad)" dot={false} name="Actual" />
@@ -70,7 +70,7 @@ export default function MarketOverview() {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-white font-semibold text-sm">CA Carbon</h2>
-              <p className="text-gray-400 text-xs mt-0.5">€/tonne CO₂</p>
+              <p className="text-gray-600 text-xs mt-0.5">€/tonne CO₂</p>
             </div>
           </div>
           <ResponsiveContainer width="100%" height={220}>
@@ -82,8 +82,8 @@ export default function MarketOverview() {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
-              <XAxis dataKey="time" tickFormatter={fmt} tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} interval={8} />
-              <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `€${v}`} />
+              <XAxis dataKey="time" tickFormatter={fmt} tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} interval={8} />
+              <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `€${v}`} />
               <Tooltip content={<CustomTooltip unit="€/t" />} />
               <Area type="monotone" dataKey="value" stroke={GREEN} strokeWidth={2} fill="url(#carbonGrad)" dot={false} name="CA Carbon" />
             </AreaChart>
@@ -98,7 +98,7 @@ export default function MarketOverview() {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-white font-semibold text-sm">Forward Curve — Monthly Settlements</h2>
-              <p className="text-gray-400 text-xs mt-0.5">Gas ($/MMBtu), Power ($/MWh), Carbon ($/t)</p>
+              <p className="text-gray-600 text-xs mt-0.5">Gas ($/MMBtu), Power ($/MWh), Carbon ($/t)</p>
             </div>
             <div className="flex items-center gap-3 text-xs">
               <LegendDot color={BLUE} label="Gas" />
@@ -109,8 +109,8 @@ export default function MarketOverview() {
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={forwardCurve} margin={{ top: 5, right: 10, bottom: 0, left: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
-              <XAxis dataKey="month" tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} />
-              <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} />
+              <XAxis dataKey="month" tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} />
+              <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} />
               <Tooltip content={<ForwardTooltip />} />
               <Line type="monotone" dataKey="gas" stroke={BLUE} strokeWidth={2} dot={false} name="Gas" />
               <Line type="monotone" dataKey="power" stroke={YELLOW} strokeWidth={2} dot={false} name="Power" />
@@ -135,7 +135,7 @@ export default function MarketOverview() {
         <div className="flex items-center justify-between mb-4">
           <div>
             <h2 className="text-white font-semibold text-sm">Henry Hub Gas — Intraday</h2>
-            <p className="text-gray-400 text-xs mt-0.5">$/MMBtu</p>
+            <p className="text-gray-600 text-xs mt-0.5">$/MMBtu</p>
           </div>
           <div className="flex items-center gap-3 text-xs">
             <LegendDot color={BLUE} label="Actual" />
@@ -151,8 +151,8 @@ export default function MarketOverview() {
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
-            <XAxis dataKey="time" tickFormatter={fmt} tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} interval={5} />
-            <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} />
+            <XAxis dataKey="time" tickFormatter={fmt} tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} interval={5} />
+            <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} />
             <Tooltip content={<CustomTooltip unit="$/MMBtu" />} />
             <ReferenceLine x={now} stroke="#DD1D21" strokeDasharray="4 4" />
             <Area type="monotone" dataKey="value" stroke={BLUE} strokeWidth={2} fill="url(#gasGrad)" dot={false} name="Gas" />
@@ -177,9 +177,9 @@ function KpiCard({ icon, label, value, unit, change, sub, accent }: {
           {positive ? '+' : ''}{change}%
         </span>
       </div>
-      <div className="text-2xl font-bold text-white mb-0.5">{value}<span className="text-sm text-gray-400 ml-1 font-normal">{unit}</span></div>
-      <div className="text-gray-400 text-xs mb-1">{label}</div>
-      <div className="text-gray-400 text-[10px]">{sub}</div>
+      <div className="text-2xl font-bold text-white mb-0.5">{value}<span className="text-sm text-gray-600 ml-1 font-normal">{unit}</span></div>
+      <div className="text-gray-600 text-xs mb-1">{label}</div>
+      <div className="text-gray-600 text-[10px]">{sub}</div>
     </div>
   )
 }
@@ -194,14 +194,14 @@ function AlertItem({ alert }: { alert: typeof alerts[0] }) {
         {icons[alert.severity]}
         <p className="text-gray-700 text-xs leading-snug">{alert.message}</p>
       </div>
-      <p className="text-gray-400 text-[10px] mt-1 ml-5">{mins}m ago · {alert.category}</p>
+      <p className="text-gray-600 text-[10px] mt-1 ml-5">{mins}m ago · {alert.category}</p>
     </div>
   )
 }
 
 function LegendDot({ color, label, dashed }: { color: string; label: string; dashed?: boolean }) {
   return (
-    <div className="flex items-center gap-1.5 text-gray-500">
+    <div className="flex items-center gap-1.5 text-gray-600">
       <div className={`w-5 h-px ${dashed ? 'border-t border-dashed' : ''}`} style={{ backgroundColor: dashed ? 'transparent' : color, borderColor: dashed ? color : undefined }} />
       {label}
     </div>
@@ -212,7 +212,7 @@ function CustomTooltip({ active, payload, label, unit }: any) {
   if (!active || !payload?.length) return null
   return (
     <div className="bg-gray-100 border border-gray-200 rounded-lg px-3 py-2 text-xs">
-      <p className="text-gray-500 mb-1">{label ? format(parseISO(label), 'HH:mm dd MMM') : ''}</p>
+      <p className="text-gray-600 mb-1">{label ? format(parseISO(label), 'HH:mm dd MMM') : ''}</p>
       {payload.map((p: any) => (
         <p key={p.name} style={{ color: p.color }} className="font-medium">{p.name}: {p.value} {unit}</p>
       ))}
@@ -224,7 +224,7 @@ function ForwardTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null
   return (
     <div className="bg-gray-100 border border-gray-200 rounded-lg px-3 py-2 text-xs">
-      <p className="text-gray-500 mb-1">{label}</p>
+      <p className="text-gray-600 mb-1">{label}</p>
       {payload.map((p: any) => (
         <p key={p.name} style={{ color: p.color }} className="font-medium">{p.name}: {p.value}</p>
       ))}

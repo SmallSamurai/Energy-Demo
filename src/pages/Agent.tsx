@@ -217,13 +217,13 @@ export default function AgentPage() {
             </div>
             <div>
               <div className="text-white font-semibold text-sm">Shell Energy Intelligence Agent</div>
-              <div className="flex items-center gap-1.5 text-gray-400 text-xs">
+              <div className="flex items-center gap-1.5 text-gray-600 text-xs">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                 Connected to {MCP_TOOLS.length} MCP data sources
               </div>
             </div>
           </div>
-          <button onClick={reset} className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-900 transition-colors px-2 py-1 rounded hover:bg-gray-100">
+          <button onClick={reset} className="flex items-center gap-1.5 text-xs text-gray-600 hover:text-gray-900 transition-colors px-2 py-1 rounded hover:bg-gray-100">
             <RefreshCw size={12} /> New conversation
           </button>
         </div>
@@ -236,7 +236,7 @@ export default function AgentPage() {
                 <BrainCircuit size={28} className="text-[#FBCE07]" />
               </div>
               <h3 className="text-white font-semibold text-lg mb-2">Market Intelligence Agent</h3>
-              <p className="text-gray-400 text-sm max-w-md leading-relaxed mb-8">
+              <p className="text-gray-600 text-sm max-w-md leading-relaxed mb-8">
                 Ask anything about your portfolio, market conditions, asset dispatch, or risk exposure.
                 The agent will pull live data from your connected MCP sources to answer.
               </p>
@@ -249,7 +249,7 @@ export default function AgentPage() {
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <q.icon size={12} className="text-[#FBCE07]" />
-                      <span className="text-[10px] text-gray-400 uppercase tracking-wide">{q.category}</span>
+                      <span className="text-[10px] text-gray-600 uppercase tracking-wide">{q.category}</span>
                     </div>
                     <p className="text-gray-700 text-xs group-hover:text-gray-900 transition-colors">{q.label}</p>
                   </button>
@@ -279,14 +279,14 @@ export default function AgentPage() {
                     : 'bg-white border border-gray-200 text-gray-700'
                 }`}>
                   <MarkdownText content={msg.content} />
-                  <p className="text-[10px] text-gray-400 mt-2">
+                  <p className="text-[10px] text-gray-600 mt-2">
                     {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </p>
                 </div>
               </div>
               {msg.role === 'user' && (
                 <div className="w-7 h-7 rounded-full bg-[#374151] flex items-center justify-center flex-shrink-0 mt-1">
-                  <User size={13} className="text-gray-500" />
+                  <User size={13} className="text-gray-600" />
                 </div>
               )}
             </div>
@@ -302,7 +302,7 @@ export default function AgentPage() {
                 {activeTools.map((tc, j) => (
                   <ToolCallBubble key={j} toolCall={tc} />
                 ))}
-                <div className="flex items-center gap-2 px-3 py-2 text-xs text-gray-400">
+                <div className="flex items-center gap-2 px-3 py-2 text-xs text-gray-600">
                   <Loader2 size={12} className="animate-spin text-[#FBCE07]" />
                   Reasoning...
                 </div>
@@ -332,7 +332,7 @@ export default function AgentPage() {
               <Send size={16} className="text-[#0A0E1A]" />
             </button>
           </div>
-          <p className="text-[10px] text-gray-400 mt-2 text-center">
+          <p className="text-[10px] text-gray-600 mt-2 text-center">
             Connected via MCP · Reads live market data, position book, asset registry, risk engine
           </p>
         </div>
@@ -351,7 +351,7 @@ export default function AgentPage() {
                 <div className="w-1.5 h-1.5 rounded-full bg-green-400 mt-1.5 flex-shrink-0" />
                 <div>
                   <p className="text-gray-700 text-[11px] font-medium">{tool.label}</p>
-                  <p className="text-gray-400 text-[10px]">{tool.description}</p>
+                  <p className="text-gray-600 text-[10px]">{tool.description}</p>
                 </div>
               </div>
             ))}
@@ -366,7 +366,7 @@ export default function AgentPage() {
                 key={q.label}
                 onClick={() => sendMessage(q.label)}
                 disabled={isTyping}
-                className="w-full text-left text-[10px] text-gray-500 hover:text-gray-900 flex items-start gap-1.5 py-1 px-1.5 rounded hover:bg-gray-100 transition-all disabled:opacity-40"
+                className="w-full text-left text-[10px] text-gray-600 hover:text-gray-900 flex items-start gap-1.5 py-1 px-1.5 rounded hover:bg-gray-100 transition-all disabled:opacity-40"
               >
                 <ChevronRight size={9} className="mt-0.5 flex-shrink-0 text-[#FBCE07]" />
                 {q.label}
@@ -392,9 +392,9 @@ function ToolCallBubble({ toolCall }: { toolCall: ToolCall }) {
         : <div className="w-2 h-2 rounded-full bg-green-400 mt-1 flex-shrink-0" />}
       <div>
         <span className="text-[#FBCE07] font-medium">{tool?.label ?? toolCall.tool}</span>
-        <span className="text-gray-400 ml-1">— {toolCall.description}</span>
+        <span className="text-gray-600 ml-1">— {toolCall.description}</span>
         {toolCall.status === 'complete' && toolCall.result && (
-          <p className="text-gray-500 mt-0.5 text-[10px]">↳ {toolCall.result}</p>
+          <p className="text-gray-600 mt-0.5 text-[10px]">↳ {toolCall.result}</p>
         )}
       </div>
     </div>

@@ -28,7 +28,7 @@ export default function SolutionsMap() {
       {/* Filters */}
       <div className="flex items-center gap-6">
         <div>
-          <p className="text-gray-400 text-[10px] uppercase tracking-widest mb-2">Filter by goal</p>
+          <p className="text-gray-600 text-[10px] uppercase tracking-widest mb-2">Filter by goal</p>
           <div className="flex gap-1.5 flex-wrap">
             {(Object.keys(goalLabels) as GoalFilter[]).map(g => (
               <FilterPill key={g} label={goalLabels[g]} active={goalFilter === g} onClick={() => setGoalFilter(g)} />
@@ -37,23 +37,23 @@ export default function SolutionsMap() {
         </div>
         <div className="w-px h-10 bg-gray-100" />
         <div>
-          <p className="text-gray-400 text-[10px] uppercase tracking-widest mb-2">Filter by industry</p>
+          <p className="text-gray-600 text-[10px] uppercase tracking-widest mb-2">Filter by industry</p>
           <div className="flex gap-1.5 flex-wrap">
             {(Object.keys(industryLabels) as IndustryFilter[]).map(i => (
               <FilterPill key={i} label={industryLabels[i]} active={industryFilter === i} onClick={() => setIndustryFilter(i)} />
             ))}
           </div>
         </div>
-        <div className="ml-auto text-gray-400 text-xs">
+        <div className="ml-auto text-gray-600 text-xs">
           <span className="text-white font-semibold">{filtered.length}</span> / {solutions.length} solutions
         </div>
       </div>
 
       {/* Stack role legend */}
       <div className="flex items-center gap-4 flex-wrap">
-        <span className="text-[10px] text-gray-400 uppercase tracking-widest">Stack role:</span>
+        <span className="text-[10px] text-gray-600 uppercase tracking-widest">Stack role:</span>
         {(Object.entries(stackRoleLabels) as [Solution['stackRole'], string][]).map(([role, label]) => (
-          <div key={role} className="flex items-center gap-1.5 text-[10px] text-gray-500">
+          <div key={role} className="flex items-center gap-1.5 text-[10px] text-gray-600">
             <div className="w-2 h-2 rounded-full" style={{ backgroundColor: ROLE_COLORS[role] }} />
             {label}
           </div>
@@ -66,7 +66,7 @@ export default function SolutionsMap() {
           <SolutionCard key={s.id} solution={s} onExpand={() => setSelected(s)} />
         ))}
         {filtered.length === 0 && (
-          <div className="col-span-4 py-16 text-center text-gray-400">
+          <div className="col-span-4 py-16 text-center text-gray-600">
             No solutions match these filters — try adjusting your criteria.
           </div>
         )}
@@ -109,7 +109,7 @@ function SolutionCard({ solution: s, onExpand }: { solution: Solution; onExpand:
           <span className="text-xl">{s.icon}</span>
           <h3 className="text-gray-900 font-bold text-sm leading-tight">{s.name}</h3>
         </div>
-        <p className="text-gray-500 text-xs leading-snug mb-4 flex-1">{s.tagline}</p>
+        <p className="text-gray-600 text-xs leading-snug mb-4 flex-1">{s.tagline}</p>
 
         {/* Key metrics */}
         <div className="space-y-1.5">
@@ -129,8 +129,8 @@ function SolutionCard({ solution: s, onExpand }: { solution: Solution; onExpand:
         </div>
 
         <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
-          <span className="text-[10px] text-gray-400">{s.compatibleWith.length} compatible solutions</span>
-          <ArrowUpRight size={13} className="text-gray-400 group-hover:text-amber-500 transition-colors" />
+          <span className="text-[10px] text-gray-600">{s.compatibleWith.length} compatible solutions</span>
+          <ArrowUpRight size={13} className="text-gray-600 group-hover:text-amber-500 transition-colors" />
         </div>
       </div>
     </button>
@@ -162,10 +162,10 @@ function ExpandedPanel({ solution: s, onClose, allSolutions }: { solution: Solut
                   {stackRoleLabels[s.stackRole]}
                 </span>
               </div>
-              <p className="text-gray-500 text-sm">{s.tagline}</p>
+              <p className="text-gray-600 text-sm">{s.tagline}</p>
             </div>
           </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-900 transition-colors p-1">
+          <button onClick={onClose} className="text-gray-600 hover:text-gray-900 transition-colors p-1">
             <X size={18} />
           </button>
         </div>
@@ -186,12 +186,12 @@ function ExpandedPanel({ solution: s, onClose, allSolutions }: { solution: Solut
 
             {/* Case study */}
             <div className="bg-white rounded-xl p-4 border border-gray-200">
-              <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-2">Case Study</p>
+              <p className="text-[10px] text-gray-600 uppercase tracking-widest mb-2">Case Study</p>
               <div className="flex items-start gap-2">
                 <CheckCircle size={14} className="text-green-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-white text-sm font-semibold">{s.caseStudy.name}</p>
-                  <p className="text-gray-400 text-xs">{s.caseStudy.industry}</p>
+                  <p className="text-gray-600 text-xs">{s.caseStudy.industry}</p>
                   <p className="text-gray-700 text-xs mt-1 leading-snug">{s.caseStudy.result}</p>
                   <p className="text-green-400 text-xs font-semibold mt-1">{s.caseStudy.saving}</p>
                 </div>
@@ -201,14 +201,14 @@ function ExpandedPanel({ solution: s, onClose, allSolutions }: { solution: Solut
             {/* Tags */}
             <div className="flex flex-wrap gap-1.5">
               {s.tags.map(t => (
-                <span key={t} className="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">{t}</span>
+                <span key={t} className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">{t}</span>
               ))}
             </div>
           </div>
 
           {/* Right — compatible solutions */}
           <div>
-            <p className="text-gray-400 text-xs font-medium mb-3">Works best with</p>
+            <p className="text-gray-600 text-xs font-medium mb-3">Works best with</p>
             <div className="space-y-2">
               {compatible.map(c => (
                 <div key={c.id} className="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-gray-200">
@@ -217,17 +217,17 @@ function ExpandedPanel({ solution: s, onClose, allSolutions }: { solution: Solut
                   </div>
                   <div>
                     <p className="text-white text-xs font-medium leading-tight">{c.name}</p>
-                    <p className="text-gray-400 text-[10px]">{stackRoleLabels[c.stackRole]}</p>
+                    <p className="text-gray-600 text-[10px]">{stackRoleLabels[c.stackRole]}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             <div className="mt-4 pt-4 border-t border-gray-200">
-              <p className="text-gray-400 text-xs font-medium mb-2">Best for industries</p>
+              <p className="text-gray-600 text-xs font-medium mb-2">Best for industries</p>
               <div className="flex flex-wrap gap-1">
                 {s.industries.map(ind => (
-                  <span key={ind} className="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full capitalize">{ind}</span>
+                  <span key={ind} className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full capitalize">{ind}</span>
                 ))}
               </div>
             </div>
@@ -358,7 +358,7 @@ function FilterPill({ label, active, onClick }: { label: string; active: boolean
       className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
         active
           ? 'bg-[#FBCE07] text-[#0A0E1A]'
-          : 'bg-white border border-gray-200 text-gray-500 hover:text-gray-900 hover:border-gray-200'
+          : 'bg-white border border-gray-200 text-gray-600 hover:text-gray-900 hover:border-gray-200'
       }`}
     >
       {label}
@@ -369,7 +369,7 @@ function FilterPill({ label, active, onClick }: { label: string; active: boolean
 function MetricRow({ icon, label, value, color }: { icon: React.ReactNode; label: string; value: string; color: string }) {
   return (
     <div className="flex items-center justify-between text-xs">
-      <span className="flex items-center gap-1.5 text-gray-400" style={{ color: color + 'aa' }}>{icon}{label}</span>
+      <span className="flex items-center gap-1.5 text-gray-600" style={{ color: color + 'aa' }}>{icon}{label}</span>
       <span className="font-semibold text-gray-900">{value}</span>
     </div>
   )
@@ -378,7 +378,7 @@ function MetricRow({ icon, label, value, color }: { icon: React.ReactNode; label
 function MetricCard({ label, value, color }: { label: string; value: string; color: string }) {
   return (
     <div className="bg-white rounded-lg p-3 border border-gray-200">
-      <p className="text-gray-400 text-[10px] mb-1">{label}</p>
+      <p className="text-gray-600 text-[10px] mb-1">{label}</p>
       <p className="font-bold text-sm" style={{ color }}>{value}</p>
     </div>
   )
