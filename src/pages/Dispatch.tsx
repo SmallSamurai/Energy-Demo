@@ -29,7 +29,7 @@ const STATUS_STYLES: Record<Asset['status'], string> = {
   online: 'bg-green-400/10 text-green-400 border-green-400/20',
   offline: 'bg-red-400/10 text-red-400 border-red-400/20',
   standby: 'bg-yellow-400/10 text-yellow-400 border-yellow-400/20',
-  maintenance: 'bg-[#6B7280]/10 text-[#6B7280] border-[#6B7280]/20',
+  maintenance: 'bg-[#6B7280]/10 text-gray-400 border-[#6B7280]/20',
 }
 
 export default function Dispatch() {
@@ -72,16 +72,16 @@ export default function Dispatch() {
 
       <div className="grid grid-cols-3 gap-4">
         {/* Asset grid */}
-        <div className="col-span-2 bg-[#111827] rounded-xl p-5 border border-[#1F2937]">
+        <div className="col-span-2 bg-white rounded-xl p-5 border border-gray-200">
           <h2 className="text-white font-semibold text-sm mb-1">Asset Fleet</h2>
-          <p className="text-[#6B7280] text-xs mb-4">Click an asset to see detail</p>
+          <p className="text-gray-400 text-xs mb-4">Click an asset to see detail</p>
           <div className="space-y-2">
             {assets.map(asset => (
               <div
                 key={asset.id}
                 onClick={() => setSelectedAsset(selectedAsset === asset.id ? null : asset.id)}
                 className={`rounded-lg p-3 border cursor-pointer transition-all ${
-                  selectedAsset === asset.id ? 'border-[#FBCE07]/40 bg-[#FBCE07]/5' : 'border-[#1F2937] hover:border-[#374151] bg-[#0D1117]'
+                  selectedAsset === asset.id ? 'border-[#FBCE07]/40 bg-[#FBCE07]/5' : 'border-gray-200 hover:border-gray-200 bg-white'
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -98,26 +98,26 @@ export default function Dispatch() {
                     </div>
                     <div className="flex items-center gap-4 mt-2">
                       <div className="flex-1">
-                        <div className="flex justify-between text-[10px] text-[#6B7280] mb-1">
+                        <div className="flex justify-between text-[10px] text-gray-400 mb-1">
                           <span>Dispatched: {asset.dispatched} MW</span>
                           <span>Cap: {asset.capacity} MW</span>
                         </div>
-                        <div className="h-1.5 bg-[#1F2937] rounded-full overflow-hidden">
+                        <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                           <div
                             className="h-full rounded-full transition-all"
                             style={{ width: `${(asset.dispatched / asset.capacity) * 100}%`, backgroundColor: TYPE_COLORS[asset.type] }}
                           />
                         </div>
                       </div>
-                      <span className="text-[10px] text-[#6B7280] w-16 text-right">{asset.region}</span>
+                      <span className="text-[10px] text-gray-400 w-16 text-right">{asset.region}</span>
                     </div>
                   </div>
                 </div>
                 {selectedAsset === asset.id && (
-                  <div className="mt-3 pt-3 border-t border-[#1F2937] grid grid-cols-3 gap-3 text-xs">
-                    <div><p className="text-[#6B7280]">Available</p><p className="text-white font-medium">{asset.available} MW</p></div>
-                    <div><p className="text-[#6B7280]">Utilisation</p><p className="text-white font-medium">{asset.available ? ((asset.dispatched / asset.available) * 100).toFixed(0) : 0}%</p></div>
-                    <div><p className="text-[#6B7280]">BM Eligible</p><p className={asset.flexibility ? 'text-green-400 font-medium' : 'text-[#6B7280]'}>{asset.flexibility ? 'Yes' : 'No'}</p></div>
+                  <div className="mt-3 pt-3 border-t border-gray-200 grid grid-cols-3 gap-3 text-xs">
+                    <div><p className="text-gray-400">Available</p><p className="text-white font-medium">{asset.available} MW</p></div>
+                    <div><p className="text-gray-400">Utilisation</p><p className="text-white font-medium">{asset.available ? ((asset.dispatched / asset.available) * 100).toFixed(0) : 0}%</p></div>
+                    <div><p className="text-gray-400">BM Eligible</p><p className={asset.flexibility ? 'text-green-400 font-medium' : 'text-gray-400'}>{asset.flexibility ? 'Yes' : 'No'}</p></div>
                   </div>
                 )}
               </div>
@@ -126,45 +126,45 @@ export default function Dispatch() {
         </div>
 
         {/* Balancing bids */}
-        <div className="bg-[#111827] rounded-xl p-5 border border-[#1F2937]">
+        <div className="bg-white rounded-xl p-5 border border-gray-200">
           <h2 className="text-white font-semibold text-sm mb-1">Balancing Market Bids</h2>
-          <p className="text-[#6B7280] text-xs mb-4">Today's BM submissions</p>
+          <p className="text-gray-400 text-xs mb-4">Today's BM submissions</p>
           <div className="space-y-3">
             {balancingBids.map((bid, i) => (
-              <div key={i} className="bg-[#0D1117] rounded-lg p-3 border border-[#1F2937]">
+              <div key={i} className="bg-white rounded-lg p-3 border border-gray-200">
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <div>
                     <p className="text-white text-xs font-medium">{bid.assetName}</p>
-                    <p className="text-[#6B7280] text-[10px]">{bid.period} · {bid.direction === 'up' ? '↑ Up-reg' : '↓ Down-reg'}</p>
+                    <p className="text-gray-400 text-[10px]">{bid.period} · {bid.direction === 'up' ? '↑ Up-reg' : '↓ Down-reg'}</p>
                   </div>
                   {bid.accepted
                     ? <CheckCircle size={14} className="text-green-400 flex-shrink-0" />
-                    : <XCircle size={14} className="text-[#6B7280] flex-shrink-0" />}
+                    : <XCircle size={14} className="text-gray-400 flex-shrink-0" />}
                 </div>
                 <div className="flex gap-4 text-[10px]">
-                  <span className="text-[#9CA3AF]">Vol: <span className="text-white">{bid.volume} MW</span></span>
-                  <span className="text-[#9CA3AF]">Price: <span className="text-white">£{bid.price}/MWh</span></span>
-                  <span className={bid.accepted ? 'text-green-400' : 'text-[#6B7280]'}>{bid.accepted ? 'Accepted' : 'Rejected'}</span>
+                  <span className="text-gray-500">Vol: <span className="text-white">{bid.volume} MW</span></span>
+                  <span className="text-gray-500">Price: <span className="text-white">${bid.price}/MWh</span></span>
+                  <span className={bid.accepted ? 'text-green-400' : 'text-gray-400'}>{bid.accepted ? 'Accepted' : 'Rejected'}</span>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-4 pt-4 border-t border-[#1F2937]">
+          <div className="mt-4 pt-4 border-t border-gray-200">
             <h3 className="text-white text-xs font-medium mb-3">Flexibility Revenue (MTD)</h3>
             <div className="space-y-2">
               {flexRevenue.map(f => (
                 <div key={f.service} className="flex items-center justify-between text-xs">
-                  <span className="text-[#9CA3AF]">{f.service}</span>
+                  <span className="text-gray-500">{f.service}</span>
                   <div className="flex items-center gap-2">
-                    <span className="text-[#6B7280] text-[10px]">{f.accepted}/{f.bids}</span>
-                    <span className="text-green-400 font-medium">£{(f.revenue / 1000).toFixed(1)}k</span>
+                    <span className="text-gray-400 text-[10px]">{f.accepted}/{f.bids}</span>
+                    <span className="text-green-400 font-medium">${(f.revenue / 1000).toFixed(1)}k</span>
                   </div>
                 </div>
               ))}
-              <div className="flex items-center justify-between text-xs border-t border-[#1F2937] pt-2 mt-2">
+              <div className="flex items-center justify-between text-xs border-t border-gray-200 pt-2 mt-2">
                 <span className="text-white font-medium">Total</span>
-                <span className="text-[#FBCE07] font-bold">£{(flexRevenue.reduce((s, f) => s + f.revenue, 0) / 1000).toFixed(1)}k</span>
+                <span className="text-[#FBCE07] font-bold">${(flexRevenue.reduce((s, f) => s + f.revenue, 0) / 1000).toFixed(1)}k</span>
               </div>
             </div>
           </div>
@@ -172,15 +172,15 @@ export default function Dispatch() {
       </div>
 
       {/* Dispatch timeline */}
-      <div className="bg-[#111827] rounded-xl p-5 border border-[#1F2937]">
+      <div className="bg-white rounded-xl p-5 border border-gray-200">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h2 className="text-white font-semibold text-sm">Generation Dispatch Timeline — Today</h2>
-            <p className="text-[#6B7280] text-xs">Stacked output by technology type (MW)</p>
+            <p className="text-gray-400 text-xs">Stacked output by technology type (MW)</p>
           </div>
           <div className="flex items-center gap-4 text-xs">
             {[['Gas', '#F59E0B'], ['Wind', '#3B82F6'], ['Solar', '#FBCE07'], ['Hydro', '#06B6D4']].map(([l, c]) => (
-              <div key={l} className="flex items-center gap-1.5 text-[#9CA3AF]">
+              <div key={l} className="flex items-center gap-1.5 text-gray-500">
                 <div className="w-3 h-1.5 rounded-sm" style={{ backgroundColor: c as string }} />
                 {l}
               </div>
@@ -200,7 +200,7 @@ export default function Dispatch() {
             <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
             <XAxis dataKey="hour" tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} interval={3} />
             <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `${v}MW`} />
-            <Tooltip contentStyle={{ background: '#1F2937', border: '1px solid #374151', borderRadius: 8, fontSize: 11 }} formatter={(v) => [`${Number(v).toFixed(0)} MW`]} />
+            <Tooltip contentStyle={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: 8, fontSize: 11 }} formatter={(v) => [`${Number(v).toFixed(0)} MW`]} />
             <Area type="monotone" dataKey="hydro" stackId="1" stroke="#06B6D4" fill="url(#hydroGrad)" name="Hydro" />
             <Area type="monotone" dataKey="solar" stackId="1" stroke="#FBCE07" fill="url(#solarGrad)" name="Solar" />
             <Area type="monotone" dataKey="wind" stackId="1" stroke="#3B82F6" fill="url(#windGrad)" name="Wind" />
@@ -214,11 +214,11 @@ export default function Dispatch() {
 
 function StatCard({ label, value, sub, color }: { label: string; value: string; sub: string; color: string }) {
   return (
-    <div className="bg-[#111827] rounded-xl p-4 border border-[#1F2937]">
+    <div className="bg-white rounded-xl p-4 border border-gray-200">
       <div className="w-1 h-6 rounded-full mb-3" style={{ backgroundColor: color }} />
       <div className="text-2xl font-bold text-white mb-0.5">{value}</div>
-      <div className="text-[#6B7280] text-xs">{label}</div>
-      <div className="text-[#4B5563] text-[10px] mt-1">{sub}</div>
+      <div className="text-gray-400 text-xs">{label}</div>
+      <div className="text-gray-400 text-[10px] mt-1">{sub}</div>
     </div>
   )
 }

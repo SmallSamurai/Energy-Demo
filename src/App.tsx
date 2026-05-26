@@ -15,11 +15,11 @@ import SolutionsAgent from './pages/solutions/SolutionsAgent'
 import { alerts } from './data/marketData'
 
 const WHOLESALE_META: Record<string, { title: string; subtitle: string }> = {
-  market: { title: 'Market Overview', subtitle: 'Live prices, forward curves & market alerts' },
-  portfolio: { title: 'Portfolio & Positions', subtitle: 'Open positions, P&L attribution & risk exposure' },
-  dispatch: { title: 'Dispatch & Flexibility', subtitle: 'Asset fleet, balancing market & generation timeline' },
+  market:    { title: 'Market Overview',         subtitle: 'Live prices, forward curves & market alerts' },
+  portfolio: { title: 'Portfolio & Positions',   subtitle: 'Open positions, P&L attribution & risk exposure' },
+  dispatch:  { title: 'Dispatch & Flexibility',  subtitle: 'Asset fleet, balancing market & generation timeline' },
   analytics: { title: 'Analytics & Forecasting', subtitle: 'Price scenarios, demand correlation & model performance' },
-  agent: { title: 'Energy Intelligence Agent', subtitle: 'Ask anything — powered by MCP data tools' },
+  agent:     { title: 'Energy Intelligence Agent', subtitle: 'Ask anything — powered by MCP data tools' },
 }
 
 type AppMode = 'wholesale' | 'solutions'
@@ -31,8 +31,7 @@ export default function App() {
   const criticalAlerts = alerts.filter(a => a.severity === 'critical').length
 
   return (
-    <div className="flex min-h-screen bg-[#0A0E1A]">
-      {/* Mode toggle — top centre */}
+    <div className="flex min-h-screen bg-[#F5F6FA]">
       <ModeToggle mode={mode} onSwitch={setMode} />
 
       {mode === 'wholesale' ? (
@@ -44,11 +43,11 @@ export default function App() {
               subtitle={WHOLESALE_META[wholesalePage]?.subtitle}
             />
             <main className="flex-1 p-5 overflow-auto">
-              {wholesalePage === 'market' && <MarketOverview />}
+              {wholesalePage === 'market'    && <MarketOverview />}
               {wholesalePage === 'portfolio' && <Portfolio />}
-              {wholesalePage === 'dispatch' && <Dispatch />}
+              {wholesalePage === 'dispatch'  && <Dispatch />}
               {wholesalePage === 'analytics' && <Analytics />}
-              {wholesalePage === 'agent' && <AgentPage />}
+              {wholesalePage === 'agent'     && <AgentPage />}
             </main>
           </div>
         </>
@@ -58,10 +57,10 @@ export default function App() {
           <div className="flex-1 ml-60 flex flex-col min-h-screen">
             <SolutionsHeader page={solutionsPage} />
             <main className="flex-1 p-5 overflow-auto">
-              {solutionsPage === 'map' && <SolutionsMap />}
+              {solutionsPage === 'map'        && <SolutionsMap />}
               {solutionsPage === 'calculator' && <ImpactCalculator />}
-              {solutionsPage === '360' && <Solutions360 />}
-              {solutionsPage === 'agent' && <SolutionsAgent />}
+              {solutionsPage === '360'        && <Solutions360 />}
+              {solutionsPage === 'agent'      && <SolutionsAgent />}
             </main>
           </div>
         </>
@@ -72,28 +71,22 @@ export default function App() {
 
 function ModeToggle({ mode, onSwitch }: { mode: AppMode; onSwitch: (m: AppMode) => void }) {
   return (
-    <div className="fixed top-3 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 bg-[#0D1117] border border-[#1F2937] rounded-full p-1 shadow-xl shadow-black/40">
+    <div className="fixed top-3 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 bg-white border border-gray-200 rounded-full p-1 shadow-lg shadow-gray-200/60">
       <button
         onClick={() => onSwitch('wholesale')}
         className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-          mode === 'wholesale'
-            ? 'bg-[#FBCE07] text-[#0A0E1A]'
-            : 'text-[#6B7280] hover:text-white'
+          mode === 'wholesale' ? 'bg-[#FBCE07] text-[#0A0E1A] shadow-sm' : 'text-gray-500 hover:text-gray-800'
         }`}
       >
-        <span className="text-[10px]">📈</span>
-        Wholesale Trading
+        <span>📈</span> Wholesale Trading
       </button>
       <button
         onClick={() => onSwitch('solutions')}
         className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-          mode === 'solutions'
-            ? 'bg-[#FBCE07] text-[#0A0E1A]'
-            : 'text-[#6B7280] hover:text-white'
+          mode === 'solutions' ? 'bg-[#FBCE07] text-[#0A0E1A] shadow-sm' : 'text-gray-500 hover:text-gray-800'
         }`}
       >
-        <span className="text-[10px]">⚡</span>
-        Energy Solutions
+        <span>⚡</span> Energy Solutions
       </button>
     </div>
   )

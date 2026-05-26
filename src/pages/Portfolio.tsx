@@ -33,22 +33,22 @@ export default function Portfolio() {
     <div className="space-y-5">
       {/* KPIs */}
       <div className="grid grid-cols-4 gap-4">
-        <KpiTile label="Total MTD P&L" value={`£${(totalPnl / 1000).toFixed(0)}k`} change={+18.4} positive />
+        <KpiTile label="Total MTD P&L" value={`$${(totalPnl / 1000).toFixed(0)}k`} change={+18.4} positive />
         <KpiTile label="Net Long Exposure" value={`${longExposure} MW`} change={+5.2} positive />
         <KpiTile label="Net Short Exposure" value={`${Math.abs(shortExposure)} MW`} change={-3.1} positive={false} />
-        <KpiTile label="Portfolio VaR (1D)" value="£160k" change={-4.2} positive />
+        <KpiTile label="Portfolio VaR (1D)" value="$160k" change={-4.2} positive />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         {/* P&L Waterfall */}
-        <div className="bg-[#111827] rounded-xl p-5 border border-[#1F2937]">
+        <div className="bg-white rounded-xl p-5 border border-gray-200">
           <h2 className="text-white font-semibold text-sm mb-1">MTD P&L Attribution</h2>
-          <p className="text-[#6B7280] text-xs mb-4">Waterfall by product and cost category</p>
+          <p className="text-gray-400 text-xs mb-4">Waterfall by product and cost category</p>
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={pnlWaterfall} margin={{ top: 5, right: 10, bottom: 20, left: 10 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" vertical={false} />
               <XAxis dataKey="name" tick={{ fill: '#6B7280', fontSize: 9 }} tickLine={false} angle={-35} textAnchor="end" interval={0} />
-              <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `£${(v / 1000).toFixed(0)}k`} />
+              <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
               <Tooltip content={<PnlTooltip />} />
               <Bar dataKey="cumulative" radius={[3, 3, 0, 0]}>
                 {pnlWaterfall.map((entry) => (
@@ -65,13 +65,13 @@ export default function Portfolio() {
         </div>
 
         {/* Positions table */}
-        <div className="bg-[#111827] rounded-xl p-5 border border-[#1F2937]">
+        <div className="bg-white rounded-xl p-5 border border-gray-200">
           <h2 className="text-white font-semibold text-sm mb-1">Open Positions</h2>
-          <p className="text-[#6B7280] text-xs mb-4">Mark-to-market as of now</p>
+          <p className="text-gray-400 text-xs mb-4">Mark-to-market as of now</p>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-[#6B7280] border-b border-[#1F2937]">
+                <tr className="text-gray-400 border-b border-gray-200">
                   <th className="text-left pb-2 font-medium">Product</th>
                   <th className="text-left pb-2 font-medium">Period</th>
                   <th className="text-right pb-2 font-medium">Vol</th>
@@ -84,19 +84,19 @@ export default function Portfolio() {
                 {positions.map((p, i) => {
                   const pnlPositive = p.pnl >= 0
                   return (
-                    <tr key={i} className="hover:bg-[#1F2937]/50 transition-colors">
+                    <tr key={i} className="hover:bg-gray-100/50 transition-colors">
                       <td className="py-2.5 text-white font-medium">{p.product}</td>
-                      <td className="py-2.5 text-[#9CA3AF]">{p.period}</td>
+                      <td className="py-2.5 text-gray-500">{p.period}</td>
                       <td className="py-2.5 text-right">
                         <span className={`flex items-center justify-end gap-1 ${p.type === 'long' ? 'text-green-400' : 'text-red-400'}`}>
                           {p.type === 'long' ? <ArrowUpRight size={11} /> : <ArrowDownRight size={11} />}
                           {Math.abs(p.volume)}
                         </span>
                       </td>
-                      <td className="py-2.5 text-right text-[#9CA3AF]">{p.avgPrice}</td>
+                      <td className="py-2.5 text-right text-gray-500">{p.avgPrice}</td>
                       <td className="py-2.5 text-right text-white">{p.marketPrice}</td>
                       <td className={`py-2.5 text-right font-medium ${pnlPositive ? 'text-green-400' : 'text-red-400'}`}>
-                        {pnlPositive ? '+' : ''}£{(p.pnl / 1000).toFixed(1)}k
+                        {pnlPositive ? '+' : ''}${(p.pnl / 1000).toFixed(1)}k
                       </td>
                     </tr>
                   )
@@ -109,20 +109,20 @@ export default function Portfolio() {
 
       <div className="grid grid-cols-3 gap-4">
         {/* Hedge ratios */}
-        <div className="bg-[#111827] rounded-xl p-5 border border-[#1F2937]">
+        <div className="bg-white rounded-xl p-5 border border-gray-200">
           <h2 className="text-white font-semibold text-sm mb-1">Hedge Ratios</h2>
-          <p className="text-[#6B7280] text-xs mb-4">% of exposure hedged by product</p>
+          <p className="text-gray-400 text-xs mb-4">% of exposure hedged by product</p>
           <div className="space-y-4">
             {hedgeData.map(h => (
               <div key={h.product}>
                 <div className="flex justify-between text-xs mb-1.5">
-                  <span className="text-[#9CA3AF]">{h.product}</span>
+                  <span className="text-gray-500">{h.product}</span>
                   <span className="text-white font-medium">{h.hedged}%</span>
                 </div>
-                <div className="h-2 bg-[#1F2937] rounded-full overflow-hidden">
+                <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                   <div className="h-full rounded-full bg-gradient-to-r from-[#FBCE07] to-[#F59E0B]" style={{ width: `${h.hedged}%` }} />
                 </div>
-                <div className="flex justify-between text-[10px] mt-1 text-[#4B5563]">
+                <div className="flex justify-between text-[10px] mt-1 text-gray-400">
                   <span>Hedged</span>
                   <span>{h.open}% open</span>
                 </div>
@@ -132,13 +132,13 @@ export default function Portfolio() {
         </div>
 
         {/* Exposure heatmap */}
-        <div className="col-span-2 bg-[#111827] rounded-xl p-5 border border-[#1F2937]">
+        <div className="col-span-2 bg-white rounded-xl p-5 border border-gray-200">
           <h2 className="text-white font-semibold text-sm mb-1">Exposure Heatmap</h2>
-          <p className="text-[#6B7280] text-xs mb-4">Risk concentration by period and commodity (0–100 scale)</p>
+          <p className="text-gray-400 text-xs mb-4">Risk concentration by period and commodity (0–100 scale)</p>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-[#6B7280] border-b border-[#1F2937]">
+                <tr className="text-gray-400 border-b border-gray-200">
                   <th className="text-left pb-2 font-medium w-20">Period</th>
                   <th className="text-center pb-2 font-medium">Gas</th>
                   <th className="text-center pb-2 font-medium">Power</th>
@@ -148,7 +148,7 @@ export default function Portfolio() {
               <tbody className="divide-y divide-[#1F2937]">
                 {exposureHeatmap.map(row => (
                   <tr key={row.period}>
-                    <td className="py-2 text-[#9CA3AF] font-medium">{row.period}</td>
+                    <td className="py-2 text-gray-500 font-medium">{row.period}</td>
                     <td className="py-2 px-4"><HeatCell value={row.gas} /></td>
                     <td className="py-2 px-4"><HeatCell value={row.power} /></td>
                     <td className="py-2 px-4"><HeatCell value={row.carbon} /></td>
@@ -161,15 +161,15 @@ export default function Portfolio() {
       </div>
 
       {/* VaR */}
-      <div className="bg-[#111827] rounded-xl p-5 border border-[#1F2937]">
+      <div className="bg-white rounded-xl p-5 border border-gray-200">
         <h2 className="text-white font-semibold text-sm mb-1">Value at Risk (VaR) by Horizon</h2>
-        <p className="text-[#6B7280] text-xs mb-4">95% confidence interval — potential loss by commodity</p>
+        <p className="text-gray-400 text-xs mb-4">95% confidence interval — potential loss by commodity</p>
         <ResponsiveContainer width="100%" height={180}>
           <BarChart data={varData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" vertical={false} />
             <XAxis dataKey="period" tick={{ fill: '#6B7280', fontSize: 11 }} tickLine={false} />
-            <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `£${(v / 1000).toFixed(0)}k`} />
-            <Tooltip formatter={(v) => `£${(Number(v) / 1000).toFixed(0)}k`} contentStyle={{ background: '#1F2937', border: '1px solid #374151', borderRadius: 8, fontSize: 12 }} />
+            <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
+            <Tooltip formatter={(v) => `$${(Number(v) / 1000).toFixed(0)}k`} contentStyle={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: 8, fontSize: 12 }} />
             <Bar dataKey="power" stackId="a" fill={YELLOW} name="Power" radius={[0, 0, 0, 0]} />
             <Bar dataKey="gas" stackId="a" fill={BLUE} name="Gas" />
             <Bar dataKey="carbon" stackId="a" fill={GREEN} name="Carbon" radius={[3, 3, 0, 0]} />
@@ -182,9 +182,9 @@ export default function Portfolio() {
 
 function KpiTile({ label, value, change, positive }: { label: string; value: string; change: number; positive: boolean }) {
   return (
-    <div className="bg-[#111827] rounded-xl p-4 border border-[#1F2937]">
+    <div className="bg-white rounded-xl p-4 border border-gray-200">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-[#6B7280] text-xs">{label}</span>
+        <span className="text-gray-400 text-xs">{label}</span>
         <span className={`text-xs flex items-center gap-0.5 ${positive ? 'text-green-400' : 'text-red-400'}`}>
           {positive ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
           {change > 0 ? '+' : ''}{change}%
@@ -211,12 +211,12 @@ function PnlTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null
   const entry = pnlWaterfall.find(e => e.name === label)
   return (
-    <div className="bg-[#1F2937] border border-[#374151] rounded-lg px-3 py-2 text-xs">
-      <p className="text-[#9CA3AF] mb-1">{label}</p>
-      {entry && <p className="text-white font-medium">P&L: £{(entry.cumulative / 1000).toFixed(1)}k</p>}
+    <div className="bg-gray-100 border border-gray-200 rounded-lg px-3 py-2 text-xs">
+      <p className="text-gray-500 mb-1">{label}</p>
+      {entry && <p className="text-white font-medium">P&L: ${(entry.cumulative / 1000).toFixed(1)}k</p>}
       {entry && entry.type !== 'base' && entry.type !== 'total' && (
         <p className={entry.type === 'positive' ? 'text-green-400' : 'text-red-400'}>
-          Δ {entry.type === 'positive' ? '+' : ''}£{(entry.value / 1000).toFixed(1)}k
+          Δ {entry.type === 'positive' ? '+' : ''}${(entry.value / 1000).toFixed(1)}k
         </p>
       )}
     </div>

@@ -2,51 +2,35 @@ import { useState, useEffect } from 'react'
 import { format } from 'date-fns'
 import { Wifi, TrendingUp, TrendingDown } from 'lucide-react'
 
-interface HeaderProps {
-  title: string
-  subtitle?: string
-}
+interface HeaderProps { title: string; subtitle?: string }
 
 export default function Header({ title, subtitle }: HeaderProps) {
   const [now, setNow] = useState(new Date())
-
-  useEffect(() => {
-    const t = setInterval(() => setNow(new Date()), 1000)
-    return () => clearInterval(t)
-  }, [])
-
-  const marketOpen = now.getHours() >= 6 && now.getHours() < 22
+  useEffect(() => { const t = setInterval(() => setNow(new Date()), 1000); return () => clearInterval(t) }, [])
+  const marketOpen = now.getHours() >= 8 && now.getHours() < 17
 
   return (
-    <header className="h-14 bg-[#0D1117] border-b border-[#1F2937] flex items-center justify-between px-6 flex-shrink-0">
+    <header className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-6 flex-shrink-0 shadow-sm">
       <div>
-        <h1 className="text-white font-semibold text-base leading-tight">{title}</h1>
-        {subtitle && <p className="text-[#6B7280] text-xs">{subtitle}</p>}
+        <h1 className="text-gray-900 font-bold text-base leading-tight">{title}</h1>
+        {subtitle && <p className="text-gray-500 text-xs">{subtitle}</p>}
       </div>
-
       <div className="flex items-center gap-5">
-        {/* Live price tickers */}
         <div className="flex items-center gap-4 text-xs">
-          <Ticker label="NBP Gas" value="82.1" unit="p/th" change={+2.7} />
-          <Ticker label="UK Power" value="115.2" unit="£/MWh" change={+6.7} />
-          <Ticker label="EUA" value="65.1" unit="€/t" change={+2.6} />
+          <Ticker label="Henry Hub Gas" value="3.82" unit="$/MMBtu" change={+2.7} />
+          <Ticker label="ERCOT Power" value="58.40" unit="$/MWh" change={+6.7} />
+          <Ticker label="Carbon (CA)" value="32.15" unit="$/t" change={+1.4} />
         </div>
-
-        <div className="w-px h-6 bg-[#1F2937]" />
-
-        {/* Market status */}
+        <div className="w-px h-6 bg-gray-200" />
         <div className="flex items-center gap-2 text-xs">
-          <div className={`w-1.5 h-1.5 rounded-full ${marketOpen ? 'bg-green-400 animate-pulse' : 'bg-[#6B7280]'}`} />
-          <span className={marketOpen ? 'text-green-400' : 'text-[#6B7280]'}>{marketOpen ? 'LIVE' : 'CLOSED'}</span>
+          <div className={`w-1.5 h-1.5 rounded-full ${marketOpen ? 'bg-green-500 animate-pulse' : 'bg-gray-300'}`} />
+          <span className={marketOpen ? 'text-green-600 font-medium' : 'text-gray-400'}>{marketOpen ? 'LIVE' : 'CLOSED'}</span>
         </div>
-
-        {/* Time */}
         <div className="text-right">
-          <div className="text-white text-sm font-mono font-medium">{format(now, 'HH:mm:ss')}</div>
-          <div className="text-[#6B7280] text-[10px]">{format(now, 'EEE dd MMM yyyy')} UTC</div>
+          <div className="text-gray-900 text-sm font-mono font-semibold">{format(now, 'HH:mm:ss')}</div>
+          <div className="text-gray-400 text-[10px]">{format(now, 'EEE dd MMM yyyy')} CT</div>
         </div>
-
-        <Wifi size={14} className="text-[#4B5563]" />
+        <Wifi size={14} className="text-gray-300" />
       </div>
     </header>
   )
@@ -56,10 +40,10 @@ function Ticker({ label, value, unit, change }: { label: string; value: string; 
   const positive = change >= 0
   return (
     <div className="flex items-center gap-1.5">
-      <span className="text-[#6B7280]">{label}</span>
-      <span className="text-white font-medium">{value}</span>
-      <span className="text-[#4B5563]">{unit}</span>
-      <span className={`flex items-center gap-0.5 ${positive ? 'text-green-400' : 'text-red-400'}`}>
+      <span className="text-gray-400">{label}</span>
+      <span className="text-gray-900 font-semibold">{value}</span>
+      <span className="text-gray-400">{unit}</span>
+      <span className={`flex items-center gap-0.5 ${positive ? 'text-green-600' : 'text-red-500'}`}>
         {positive ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
         {positive ? '+' : ''}{change}%
       </span>

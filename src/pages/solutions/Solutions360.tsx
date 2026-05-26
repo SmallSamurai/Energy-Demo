@@ -30,25 +30,25 @@ export default function Solutions360() {
     <div className="space-y-5">
       {/* Portfolio KPIs */}
       <div className="grid grid-cols-5 gap-4">
-        <KpiCard icon={<TrendingUp size={16} />} label="Combined Annual Saving" value={`£${(portfolioSummary.totalAnnualSaving / 1000).toFixed(0)}k`} sub="All 8 solutions deployed" color="#FBCE07" />
+        <KpiCard icon={<TrendingUp size={16} />} label="Combined Annual Saving" value={`$${(portfolioSummary.totalAnnualSaving / 1000).toFixed(0)}k`} sub="All 8 solutions deployed" color="#FBCE07" />
         <KpiCard icon={<Leaf size={16} />} label="Total Carbon Reduction" value={`${(portfolioSummary.totalCarbonReduction / 1000).toFixed(1)}k tCO₂`} sub="vs. 2024 baseline" color="#10B981" />
-        <KpiCard icon={<span className="text-sm">💰</span>} label="Total Capex" value={`£${(portfolioSummary.totalCapex / 1000000).toFixed(1)}M`} sub="Full stack deployment" color="#3B82F6" />
+        <KpiCard icon={<span className="text-sm">💰</span>} label="Total Capex" value={`$${(portfolioSummary.totalCapex / 1000000).toFixed(1)}M`} sub="Full stack deployment" color="#3B82F6" />
         <KpiCard icon={<span className="text-sm">⏱</span>} label="Blended Payback" value={`${portfolioSummary.blendedPayback} yrs`} sub="Portfolio average" color="#F97316" />
         <KpiCard icon={<Zap size={16} />} label="Blended ROI" value={`${portfolioSummary.blendedRoi}%`} sub="IRR across all solutions" color="#8B5CF6" />
       </div>
 
       <div className="grid grid-cols-3 gap-4">
         {/* Energy Flow Diagram */}
-        <div className="col-span-2 bg-[#111827] rounded-xl p-5 border border-[#1F2937]">
+        <div className="col-span-2 bg-white rounded-xl p-5 border border-gray-200">
           <h2 className="text-white font-semibold text-sm mb-1">Integrated Energy Flow</h2>
-          <p className="text-[#6B7280] text-xs mb-5">How your solutions interact — hover to highlight flows</p>
+          <p className="text-gray-400 text-xs mb-5">How your solutions interact — hover to highlight flows</p>
           <EnergyFlow hoveredFlow={hoveredFlow} setHoveredFlow={setHoveredFlow} />
         </div>
 
         {/* Scope breakdown */}
-        <div className="bg-[#111827] rounded-xl p-5 border border-[#1F2937]">
+        <div className="bg-white rounded-xl p-5 border border-gray-200">
           <h2 className="text-white font-semibold text-sm mb-1">Carbon Scope Reduction</h2>
-          <p className="text-[#6B7280] text-xs mb-4">% of each scope addressed by solutions</p>
+          <p className="text-gray-400 text-xs mb-4">% of each scope addressed by solutions</p>
           <div className="space-y-5">
             {[
               { scope: 'Scope 1', pct: portfolioSummary.scopeReduction.scope1, desc: 'Direct operational emissions', color: '#DD1D21' },
@@ -59,11 +59,11 @@ export default function Solutions360() {
                 <div className="flex justify-between text-xs mb-2">
                   <div>
                     <span className="text-white font-semibold">{s.scope}</span>
-                    <span className="text-[#6B7280] ml-2">{s.desc}</span>
+                    <span className="text-gray-400 ml-2">{s.desc}</span>
                   </div>
                   <span className="font-bold" style={{ color: s.color }}>{s.pct}%</span>
                 </div>
-                <div className="h-3 bg-[#1F2937] rounded-full overflow-hidden">
+                <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
                   <div className="h-full rounded-full transition-all" style={{ width: `${s.pct}%`, backgroundColor: s.color }} />
                 </div>
               </div>
@@ -76,10 +76,10 @@ export default function Solutions360() {
               {solutions.sort((a, b) => b.carbonReduction - a.carbonReduction).map(s => (
                 <div key={s.id} className="flex items-center gap-2 text-xs">
                   <span className="w-4 text-center">{s.icon}</span>
-                  <div className="flex-1 h-1.5 bg-[#1F2937] rounded-full overflow-hidden">
+                  <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                     <div className="h-full rounded-full" style={{ width: `${(s.carbonReduction / 2400) * 100}%`, backgroundColor: SOL_COLORS[s.id] }} />
                   </div>
-                  <span className="text-[#9CA3AF] w-20 text-right">{s.carbonReduction} tCO₂</span>
+                  <span className="text-gray-500 w-20 text-right">{s.carbonReduction} tCO₂</span>
                 </div>
               ))}
             </div>
@@ -89,15 +89,15 @@ export default function Solutions360() {
 
       <div className="grid grid-cols-2 gap-4">
         {/* Carbon pathway */}
-        <div className="bg-[#111827] rounded-xl p-5 border border-[#1F2937]">
+        <div className="bg-white rounded-xl p-5 border border-gray-200">
           <h2 className="text-white font-semibold text-sm mb-1">Decarbonisation Pathway</h2>
-          <p className="text-[#6B7280] text-xs mb-4">Actual trajectory vs. SBTi-aligned target (tCO₂/yr)</p>
+          <p className="text-gray-400 text-xs mb-4">Actual trajectory vs. SBTi-aligned target (tCO₂/yr)</p>
           <ResponsiveContainer width="100%" height={220}>
             <LineChart data={carbonPathwayData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
               <XAxis dataKey="year" tick={{ fill: '#6B7280', fontSize: 11 }} tickLine={false} />
               <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `${(v / 1000).toFixed(1)}kt`} />
-              <Tooltip contentStyle={{ background: '#1F2937', border: '1px solid #374151', borderRadius: 8, fontSize: 11 }} formatter={(v) => [`${v} tCO₂`]} />
+              <Tooltip contentStyle={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: 8, fontSize: 11 }} formatter={(v) => [`${v} tCO₂`]} />
               <Line type="monotone" dataKey="baseline" stroke="#374151" strokeWidth={1.5} strokeDasharray="4 4" dot={false} name="No action" />
               <Line type="monotone" dataKey="target" stroke="#10B981" strokeWidth={1.5} strokeDasharray="4 4" dot={false} name="SBTi Target" />
               <Line type="monotone" dataKey="actual" stroke="#FBCE07" strokeWidth={2.5} dot={{ fill: '#FBCE07', r: 3 }} name="With solutions" />
@@ -106,15 +106,15 @@ export default function Solutions360() {
         </div>
 
         {/* Stacked financial timeline */}
-        <div className="bg-[#111827] rounded-xl p-5 border border-[#1F2937]">
+        <div className="bg-white rounded-xl p-5 border border-gray-200">
           <h2 className="text-white font-semibold text-sm mb-1">Cumulative Savings by Solution</h2>
-          <p className="text-[#6B7280] text-xs mb-4">Stacked annual savings as each solution comes online (£k/yr)</p>
+          <p className="text-gray-400 text-xs mb-4">Stacked annual savings as each solution comes online ($k/yr)</p>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={stackTimelineData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" vertical={false} />
               <XAxis dataKey="year" tick={{ fill: '#6B7280', fontSize: 11 }} tickLine={false} />
-              <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `£${v}k`} />
-              <Tooltip contentStyle={{ background: '#1F2937', border: '1px solid #374151', borderRadius: 8, fontSize: 11 }} formatter={(v) => [`£${v}k`]} />
+              <YAxis tick={{ fill: '#6B7280', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${v}k`} />
+              <Tooltip contentStyle={{ background: '#FFFFFF', border: '1px solid #E5E7EB', borderRadius: 8, fontSize: 11 }} formatter={(v) => [`$${v}k`]} />
               {Object.keys(SOL_COLORS).map(id => (
                 <Bar key={id} dataKey={id} stackId="a" fill={SOL_COLORS[id]} name={solutions.find(s => s.id === id)?.name ?? id} />
               ))}
@@ -124,15 +124,15 @@ export default function Solutions360() {
       </div>
 
       {/* Stack builder */}
-      <div className="bg-[#111827] rounded-xl p-5 border border-[#1F2937]">
+      <div className="bg-white rounded-xl p-5 border border-gray-200">
         <div className="flex items-start justify-between mb-4">
           <div>
             <h2 className="text-white font-semibold text-sm">Build Your Stack</h2>
-            <p className="text-[#6B7280] text-xs mt-0.5">Toggle solutions on/off to model your specific deployment — metrics update in real-time</p>
+            <p className="text-gray-400 text-xs mt-0.5">Toggle solutions on/off to model your specific deployment — metrics update in real-time</p>
           </div>
           <div className="text-right">
-            <p className="text-[#6B7280] text-xs">Selected stack</p>
-            <p className="text-white font-bold">£{(totalSaving / 1000).toFixed(0)}k/yr · {totalCarbon.toLocaleString()} tCO₂</p>
+            <p className="text-gray-400 text-xs">Selected stack</p>
+            <p className="text-white font-bold">${(totalSaving / 1000).toFixed(0)}k/yr · {totalCarbon.toLocaleString()} tCO₂</p>
           </div>
         </div>
         <div className="grid grid-cols-4 gap-3">
@@ -143,7 +143,7 @@ export default function Solutions360() {
                 key={s.id}
                 onClick={() => toggleSolution(s.id)}
                 className={`flex items-center gap-3 p-3 rounded-xl border text-left transition-all ${
-                  active ? 'border-opacity-40' : 'border-[#1F2937] opacity-40'
+                  active ? 'border-opacity-40' : 'border-gray-200 opacity-40'
                 }`}
                 style={active ? { borderColor: SOL_COLORS[s.id] + '60', backgroundColor: SOL_COLORS[s.id] + '08' } : {}}
               >
@@ -151,8 +151,8 @@ export default function Solutions360() {
                   {s.icon}
                 </div>
                 <div className="min-w-0">
-                  <p className={`text-xs font-medium truncate ${active ? 'text-white' : 'text-[#6B7280]'}`}>{s.name}</p>
-                  <p className="text-[10px] text-[#4B5563]">{s.carbonReduction} tCO₂</p>
+                  <p className={`text-xs font-medium truncate ${active ? 'text-white' : 'text-gray-400'}`}>{s.name}</p>
+                  <p className="text-[10px] text-gray-400">{s.carbonReduction} tCO₂</p>
                 </div>
               </button>
             )
@@ -240,7 +240,7 @@ function EnergyFlow({ hoveredFlow, setHoveredFlow }: { hoveredFlow: string | nul
           </div>
           <div className="text-center">
             <p className="text-white text-[9px] font-medium leading-tight whitespace-nowrap">{node.label}</p>
-            <p className="text-[#4B5563] text-[8px] whitespace-nowrap">{node.value}</p>
+            <p className="text-gray-400 text-[8px] whitespace-nowrap">{node.value}</p>
           </div>
         </div>
       ))}
@@ -250,11 +250,11 @@ function EnergyFlow({ hoveredFlow, setHoveredFlow }: { hoveredFlow: string | nul
 
 function KpiCard({ icon, label, value, sub, color }: { icon: React.ReactNode; label: string; value: string; sub: string; color: string }) {
   return (
-    <div className="bg-[#111827] rounded-xl p-4 border border-[#1F2937]">
+    <div className="bg-white rounded-xl p-4 border border-gray-200">
       <div className="mb-2" style={{ color }}>{icon}</div>
       <p className="text-2xl font-bold text-white leading-tight">{value}</p>
-      <p className="text-[#6B7280] text-xs mt-0.5">{label}</p>
-      <p className="text-[#4B5563] text-[10px] mt-1">{sub}</p>
+      <p className="text-gray-400 text-xs mt-0.5">{label}</p>
+      <p className="text-gray-400 text-[10px] mt-1">{sub}</p>
     </div>
   )
 }
