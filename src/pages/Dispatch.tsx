@@ -26,8 +26,8 @@ const TYPE_ICONS: Record<Asset['type'], React.ReactNode> = {
 }
 
 const STATUS_STYLES: Record<Asset['status'], string> = {
-  online: 'bg-green-400/10 text-green-400 border-green-400/20',
-  offline: 'bg-red-400/10 text-red-400 border-red-400/20',
+  online: 'bg-green-400/10 text-green-600 border-green-400/20',
+  offline: 'bg-red-400/10 text-red-500 border-red-400/20',
   standby: 'bg-yellow-400/10 text-yellow-400 border-yellow-400/20',
   maintenance: 'bg-[#6B7280]/10 text-gray-600 border-[#6B7280]/20',
 }
@@ -73,7 +73,7 @@ export default function Dispatch() {
       <div className="grid grid-cols-3 gap-4">
         {/* Asset grid */}
         <div className="col-span-2 bg-white rounded-xl p-5 border border-gray-200">
-          <h2 className="text-white font-semibold text-sm mb-1">Asset Fleet</h2>
+          <h2 className="text-gray-900 font-semibold text-sm mb-1">Asset Fleet</h2>
           <p className="text-gray-600 text-xs mb-4">Click an asset to see detail</p>
           <div className="space-y-2">
             {assets.map(asset => (
@@ -88,7 +88,7 @@ export default function Dispatch() {
                   <div style={{ color: TYPE_COLORS[asset.type] }}>{TYPE_ICONS[asset.type]}</div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-white text-sm font-medium truncate">{asset.name}</span>
+                      <span className="text-gray-900 text-sm font-medium truncate">{asset.name}</span>
                       <div className="flex items-center gap-2 flex-shrink-0">
                         {asset.flexibility && (
                           <span className="text-[10px] bg-[#8B5CF6]/10 text-[#8B5CF6] border border-[#8B5CF6]/20 px-1.5 py-0.5 rounded font-medium">FLEX</span>
@@ -115,9 +115,9 @@ export default function Dispatch() {
                 </div>
                 {selectedAsset === asset.id && (
                   <div className="mt-3 pt-3 border-t border-gray-200 grid grid-cols-3 gap-3 text-xs">
-                    <div><p className="text-gray-600">Available</p><p className="text-white font-medium">{asset.available} MW</p></div>
-                    <div><p className="text-gray-600">Utilisation</p><p className="text-white font-medium">{asset.available ? ((asset.dispatched / asset.available) * 100).toFixed(0) : 0}%</p></div>
-                    <div><p className="text-gray-600">BM Eligible</p><p className={asset.flexibility ? 'text-green-400 font-medium' : 'text-gray-600'}>{asset.flexibility ? 'Yes' : 'No'}</p></div>
+                    <div><p className="text-gray-600">Available</p><p className="text-gray-900 font-medium">{asset.available} MW</p></div>
+                    <div><p className="text-gray-600">Utilisation</p><p className="text-gray-900 font-medium">{asset.available ? ((asset.dispatched / asset.available) * 100).toFixed(0) : 0}%</p></div>
+                    <div><p className="text-gray-600">BM Eligible</p><p className={asset.flexibility ? 'text-green-600 font-medium' : 'text-gray-600'}>{asset.flexibility ? 'Yes' : 'No'}</p></div>
                   </div>
                 )}
               </div>
@@ -127,43 +127,43 @@ export default function Dispatch() {
 
         {/* Balancing bids */}
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h2 className="text-white font-semibold text-sm mb-1">Balancing Market Bids</h2>
+          <h2 className="text-gray-900 font-semibold text-sm mb-1">Balancing Market Bids</h2>
           <p className="text-gray-600 text-xs mb-4">Today's BM submissions</p>
           <div className="space-y-3">
             {balancingBids.map((bid, i) => (
               <div key={i} className="bg-white rounded-lg p-3 border border-gray-200">
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <div>
-                    <p className="text-white text-xs font-medium">{bid.assetName}</p>
+                    <p className="text-gray-900 text-xs font-medium">{bid.assetName}</p>
                     <p className="text-gray-600 text-[10px]">{bid.period} · {bid.direction === 'up' ? '↑ Up-reg' : '↓ Down-reg'}</p>
                   </div>
                   {bid.accepted
-                    ? <CheckCircle size={14} className="text-green-400 flex-shrink-0" />
+                    ? <CheckCircle size={14} className="text-green-600 flex-shrink-0" />
                     : <XCircle size={14} className="text-gray-600 flex-shrink-0" />}
                 </div>
                 <div className="flex gap-4 text-[10px]">
-                  <span className="text-gray-600">Vol: <span className="text-white">{bid.volume} MW</span></span>
-                  <span className="text-gray-600">Price: <span className="text-white">${bid.price}/MWh</span></span>
-                  <span className={bid.accepted ? 'text-green-400' : 'text-gray-600'}>{bid.accepted ? 'Accepted' : 'Rejected'}</span>
+                  <span className="text-gray-600">Vol: <span className="text-gray-900">{bid.volume} MW</span></span>
+                  <span className="text-gray-600">Price: <span className="text-gray-900">${bid.price}/MWh</span></span>
+                  <span className={bid.accepted ? 'text-green-600' : 'text-gray-600'}>{bid.accepted ? 'Accepted' : 'Rejected'}</span>
                 </div>
               </div>
             ))}
           </div>
 
           <div className="mt-4 pt-4 border-t border-gray-200">
-            <h3 className="text-white text-xs font-medium mb-3">Flexibility Revenue (MTD)</h3>
+            <h3 className="text-gray-900 text-xs font-medium mb-3">Flexibility Revenue (MTD)</h3>
             <div className="space-y-2">
               {flexRevenue.map(f => (
                 <div key={f.service} className="flex items-center justify-between text-xs">
                   <span className="text-gray-600">{f.service}</span>
                   <div className="flex items-center gap-2">
                     <span className="text-gray-600 text-[10px]">{f.accepted}/{f.bids}</span>
-                    <span className="text-green-400 font-medium">${(f.revenue / 1000).toFixed(1)}k</span>
+                    <span className="text-green-600 font-medium">${(f.revenue / 1000).toFixed(1)}k</span>
                   </div>
                 </div>
               ))}
               <div className="flex items-center justify-between text-xs border-t border-gray-200 pt-2 mt-2">
-                <span className="text-white font-medium">Total</span>
+                <span className="text-gray-900 font-medium">Total</span>
                 <span className="text-[#FBCE07] font-bold">${(flexRevenue.reduce((s, f) => s + f.revenue, 0) / 1000).toFixed(1)}k</span>
               </div>
             </div>
@@ -175,7 +175,7 @@ export default function Dispatch() {
       <div className="bg-white rounded-xl p-5 border border-gray-200">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-white font-semibold text-sm">Generation Dispatch Timeline — Today</h2>
+            <h2 className="text-gray-900 font-semibold text-sm">Generation Dispatch Timeline — Today</h2>
             <p className="text-gray-600 text-xs">Stacked output by technology type (MW)</p>
           </div>
           <div className="flex items-center gap-4 text-xs">
@@ -216,7 +216,7 @@ function StatCard({ label, value, sub, color }: { label: string; value: string; 
   return (
     <div className="bg-white rounded-xl p-4 border border-gray-200">
       <div className="w-1 h-6 rounded-full mb-3" style={{ backgroundColor: color }} />
-      <div className="text-2xl font-bold text-white mb-0.5">{value}</div>
+      <div className="text-2xl font-bold text-gray-900 mb-0.5">{value}</div>
       <div className="text-gray-600 text-xs">{label}</div>
       <div className="text-gray-600 text-[10px] mt-1">{sub}</div>
     </div>

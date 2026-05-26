@@ -40,14 +40,14 @@ export default function Solutions360() {
       <div className="grid grid-cols-3 gap-4">
         {/* Energy Flow Diagram */}
         <div className="col-span-2 bg-white rounded-xl p-5 border border-gray-200">
-          <h2 className="text-white font-semibold text-sm mb-1">Integrated Energy Flow</h2>
+          <h2 className="text-gray-900 font-semibold text-sm mb-1">Integrated Energy Flow</h2>
           <p className="text-gray-600 text-xs mb-5">How your solutions interact — hover to highlight flows</p>
           <EnergyFlow hoveredFlow={hoveredFlow} setHoveredFlow={setHoveredFlow} />
         </div>
 
         {/* Scope breakdown */}
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h2 className="text-white font-semibold text-sm mb-1">Carbon Scope Reduction</h2>
+          <h2 className="text-gray-900 font-semibold text-sm mb-1">Carbon Scope Reduction</h2>
           <p className="text-gray-600 text-xs mb-4">% of each scope addressed by solutions</p>
           <div className="space-y-5">
             {[
@@ -58,7 +58,7 @@ export default function Solutions360() {
               <div key={s.scope}>
                 <div className="flex justify-between text-xs mb-2">
                   <div>
-                    <span className="text-white font-semibold">{s.scope}</span>
+                    <span className="text-gray-900 font-semibold">{s.scope}</span>
                     <span className="text-gray-600 ml-2">{s.desc}</span>
                   </div>
                   <span className="font-bold" style={{ color: s.color }}>{s.pct}%</span>
@@ -71,7 +71,7 @@ export default function Solutions360() {
           </div>
 
           <div className="mt-6">
-            <h3 className="text-white text-xs font-semibold mb-3">Per-solution Carbon Impact</h3>
+            <h3 className="text-gray-900 text-xs font-semibold mb-3">Per-solution Carbon Impact</h3>
             <div className="space-y-2">
               {solutions.sort((a, b) => b.carbonReduction - a.carbonReduction).map(s => (
                 <div key={s.id} className="flex items-center gap-2 text-xs">
@@ -90,7 +90,7 @@ export default function Solutions360() {
       <div className="grid grid-cols-2 gap-4">
         {/* Carbon pathway */}
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h2 className="text-white font-semibold text-sm mb-1">Decarbonisation Pathway</h2>
+          <h2 className="text-gray-900 font-semibold text-sm mb-1">Decarbonisation Pathway</h2>
           <p className="text-gray-600 text-xs mb-4">Actual trajectory vs. SBTi-aligned target (tCO₂/yr)</p>
           <ResponsiveContainer width="100%" height={220}>
             <LineChart data={carbonPathwayData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
@@ -107,7 +107,7 @@ export default function Solutions360() {
 
         {/* Stacked financial timeline */}
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h2 className="text-white font-semibold text-sm mb-1">Cumulative Savings by Solution</h2>
+          <h2 className="text-gray-900 font-semibold text-sm mb-1">Cumulative Savings by Solution</h2>
           <p className="text-gray-600 text-xs mb-4">Stacked annual savings as each solution comes online ($k/yr)</p>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={stackTimelineData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
@@ -127,12 +127,12 @@ export default function Solutions360() {
       <div className="bg-white rounded-xl p-5 border border-gray-200">
         <div className="flex items-start justify-between mb-4">
           <div>
-            <h2 className="text-white font-semibold text-sm">Build Your Stack</h2>
+            <h2 className="text-gray-900 font-semibold text-sm">Build Your Stack</h2>
             <p className="text-gray-600 text-xs mt-0.5">Toggle solutions on/off to model your specific deployment — metrics update in real-time</p>
           </div>
           <div className="text-right">
             <p className="text-gray-600 text-xs">Selected stack</p>
-            <p className="text-white font-bold">${(totalSaving / 1000).toFixed(0)}k/yr · {totalCarbon.toLocaleString()} tCO₂</p>
+            <p className="text-gray-900 font-bold">${(totalSaving / 1000).toFixed(0)}k/yr · {totalCarbon.toLocaleString()} tCO₂</p>
           </div>
         </div>
         <div className="grid grid-cols-4 gap-3">
@@ -151,7 +151,7 @@ export default function Solutions360() {
                   {s.icon}
                 </div>
                 <div className="min-w-0">
-                  <p className={`text-xs font-medium truncate ${active ? 'text-white' : 'text-gray-600'}`}>{s.name}</p>
+                  <p className={`text-xs font-medium truncate ${active ? 'text-gray-900' : 'text-gray-600'}`}>{s.name}</p>
                   <p className="text-[10px] text-gray-600">{s.carbonReduction} tCO₂</p>
                 </div>
               </button>
@@ -239,7 +239,7 @@ function EnergyFlow({ hoveredFlow, setHoveredFlow }: { hoveredFlow: string | nul
             {node.icon}
           </div>
           <div className="text-center">
-            <p className="text-white text-[9px] font-medium leading-tight whitespace-nowrap">{node.label}</p>
+            <p className="text-gray-900 text-[9px] font-medium leading-tight whitespace-nowrap">{node.label}</p>
             <p className="text-gray-600 text-[8px] whitespace-nowrap">{node.value}</p>
           </div>
         </div>
@@ -252,7 +252,7 @@ function KpiCard({ icon, label, value, sub, color }: { icon: React.ReactNode; la
   return (
     <div className="bg-white rounded-xl p-4 border border-gray-200">
       <div className="mb-2" style={{ color }}>{icon}</div>
-      <p className="text-2xl font-bold text-white leading-tight">{value}</p>
+      <p className="text-2xl font-bold text-gray-900 leading-tight">{value}</p>
       <p className="text-gray-600 text-xs mt-0.5">{label}</p>
       <p className="text-gray-600 text-[10px] mt-1">{sub}</p>
     </div>

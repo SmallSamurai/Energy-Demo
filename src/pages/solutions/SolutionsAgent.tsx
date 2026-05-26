@@ -225,7 +225,7 @@ export default function SolutionsAgent() {
               <BrainCircuit size={16} className="text-[#FBCE07]" />
             </div>
             <div>
-              <div className="text-white font-semibold text-sm">Shell Energy Solutions Advisor</div>
+              <div className="text-gray-900 font-semibold text-sm">Shell Energy Solutions Advisor</div>
               <div className="flex items-center gap-1.5 text-gray-600 text-xs">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                 Connected to {MCP_TOOLS.length} MCP sources · 8 solutions in catalogue
@@ -244,7 +244,7 @@ export default function SolutionsAgent() {
               <div className="w-14 h-14 rounded-2xl bg-[#FBCE07]/10 border border-[#FBCE07]/20 flex items-center justify-center mb-4">
                 <BrainCircuit size={28} className="text-[#FBCE07]" />
               </div>
-              <h3 className="text-white font-semibold text-lg mb-2">Solutions Advisor</h3>
+              <h3 className="text-gray-900 font-semibold text-lg mb-2">Solutions Advisor</h3>
               <p className="text-gray-600 text-sm max-w-md leading-relaxed mb-8">
                 Get personalised energy solutions recommendations, ROI modelling, carbon impact analysis and deployment strategy — powered by Shell Energy's MCP data tools.
               </p>
@@ -276,7 +276,7 @@ export default function SolutionsAgent() {
                     {msg.toolCalls.map((tc, j) => <ToolBubble key={j} tc={tc} />)}
                   </div>
                 )}
-                <div className={`rounded-xl px-4 py-3 ${msg.role === 'user' ? 'bg-[#FBCE07]/10 border border-[#FBCE07]/20 text-white' : 'bg-white border border-gray-200 text-gray-700'}`}>
+                <div className={`rounded-xl px-4 py-3 ${msg.role === 'user' ? 'bg-[#FBCE07]/10 border border-[#FBCE07]/20 text-gray-900' : 'bg-white border border-gray-200 text-gray-700'}`}>
                   <MarkdownText content={msg.content} />
                   <p className="text-[10px] text-gray-600 mt-2">{msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
                 </div>
@@ -306,7 +306,7 @@ export default function SolutionsAgent() {
         <div className="px-5 py-4 border-t border-gray-200">
           <div className="flex gap-3">
             <input
-              className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-white placeholder-[#4B5563] focus:outline-none focus:border-[#FBCE07]/40 transition-colors"
+              className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-[#FBCE07]/40 transition-colors"
               placeholder="Ask about solutions, ROI, carbon impact, deployment strategy..."
               value={input}
               onChange={e => setInput(e.target.value)}
@@ -327,7 +327,7 @@ export default function SolutionsAgent() {
         <div className="bg-white rounded-xl p-4 border border-gray-200">
           <div className="flex items-center gap-2 mb-3">
             <Database size={14} className="text-[#FBCE07]" />
-            <h3 className="text-white text-xs font-semibold">MCP Sources</h3>
+            <h3 className="text-gray-900 text-xs font-semibold">MCP Sources</h3>
           </div>
           <div className="space-y-2">
             {MCP_TOOLS.map(t => (
@@ -343,7 +343,7 @@ export default function SolutionsAgent() {
         </div>
 
         <div className="bg-white rounded-xl p-4 border border-gray-200">
-          <h3 className="text-white text-xs font-semibold mb-3">More questions</h3>
+          <h3 className="text-gray-900 text-xs font-semibold mb-3">More questions</h3>
           <div className="space-y-1.5">
             {SUGGESTED.slice(4).map(q => (
               <button key={q.label} onClick={() => send(q.label)} disabled={isTyping}
@@ -379,7 +379,7 @@ function MarkdownText({ content }: { content: string }) {
     <div className="space-y-1.5 text-sm leading-relaxed">
       {content.split('\n').map((line, i) => {
         if (line.startsWith('**') && line.endsWith('**') && !line.slice(2, -2).includes('**'))
-          return <p key={i} className="text-white font-semibold mt-3 first:mt-0">{line.slice(2, -2)}</p>
+          return <p key={i} className="text-gray-900 font-semibold mt-3 first:mt-0">{line.slice(2, -2)}</p>
         if (line.startsWith('| ')) return <TableRow key={i} line={line} />
         if (line.startsWith('|---')) return null
         if (line.startsWith('- ')) return <li key={i} className="text-gray-700 ml-4 list-disc marker:text-[#FBCE07]">{renderInline(line.slice(2))}</li>
@@ -394,7 +394,7 @@ function MarkdownText({ content }: { content: string }) {
 function renderInline(text: string) {
   return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
     part.startsWith('**') && part.endsWith('**')
-      ? <strong key={i} className="text-white font-semibold">{part.slice(2, -2)}</strong>
+      ? <strong key={i} className="text-gray-900 font-semibold">{part.slice(2, -2)}</strong>
       : part
   )
 }

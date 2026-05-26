@@ -59,8 +59,8 @@ export default function Analytics() {
         {sparklineMetrics.map(m => (
           <div key={m.label} className="bg-white rounded-xl p-4 border border-gray-200">
             <p className="text-gray-600 text-xs mb-2">{m.label}</p>
-            <p className="text-2xl font-bold text-white">{m.value}</p>
-            <p className={`text-xs mt-1 flex items-center gap-1 ${m.positive ? 'text-green-400' : 'text-red-400'}`}>
+            <p className="text-2xl font-bold text-gray-900">{m.value}</p>
+            <p className={`text-xs mt-1 flex items-center gap-1 ${m.positive ? 'text-green-600' : 'text-red-500'}`}>
               <TrendingUp size={11} /> {m.delta} vs last week
             </p>
           </div>
@@ -72,7 +72,7 @@ export default function Analytics() {
         <div className="bg-white rounded-xl p-5 border border-gray-200">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-white font-semibold text-sm">Power Forward — Price Scenarios</h2>
+              <h2 className="text-gray-900 font-semibold text-sm">Power Forward — Price Scenarios</h2>
               <p className="text-gray-600 text-xs mt-0.5">Base, Bull (+18%), Bear (-16%) cases ($/MWh)</p>
             </div>
             <div className="flex gap-3 text-xs">
@@ -104,7 +104,7 @@ export default function Analytics() {
         <div className="bg-white rounded-xl p-5 border border-gray-200">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-white font-semibold text-sm">Temperature vs. Demand Correlation</h2>
+              <h2 className="text-gray-900 font-semibold text-sm">Temperature vs. Demand Correlation</h2>
               <p className="text-gray-600 text-xs mt-0.5">Each point = 1 hour (MW vs °C)</p>
             </div>
             <div className="flex items-center gap-1.5 text-xs text-gray-600">
@@ -127,7 +127,7 @@ export default function Analytics() {
       <div className="bg-white rounded-xl p-5 border border-gray-200">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-white font-semibold text-sm">Demand Forecast with Renewables Overlay</h2>
+            <h2 className="text-gray-900 font-semibold text-sm">Demand Forecast with Renewables Overlay</h2>
             <p className="text-gray-600 text-xs mt-0.5">Forecast: 48h rolling window — shaded area = renewable generation</p>
           </div>
           <div className="flex gap-3 text-xs">
@@ -166,7 +166,7 @@ export default function Analytics() {
       {/* Correlation + model stats */}
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h2 className="text-white font-semibold text-sm mb-1">Correlation Matrix</h2>
+          <h2 className="text-gray-900 font-semibold text-sm mb-1">Correlation Matrix</h2>
           <p className="text-gray-600 text-xs mb-4">Key cross-commodity and weather correlations</p>
           <div className="space-y-3">
             {correlationMatrix.map(c => {
@@ -196,7 +196,7 @@ export default function Analytics() {
         </div>
 
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h2 className="text-white font-semibold text-sm mb-1">Model Performance</h2>
+          <h2 className="text-gray-900 font-semibold text-sm mb-1">Model Performance</h2>
           <p className="text-gray-600 text-xs mb-4">Price forecast model metrics — rolling 30 days</p>
           <div className="space-y-4">
             {[
@@ -209,7 +209,7 @@ export default function Analytics() {
               <div key={m.label}>
                 <div className="flex justify-between text-xs mb-1.5">
                   <span className="text-gray-600">{m.label}</span>
-                  <span className="text-white font-medium">{m.value}</span>
+                  <span className="text-gray-900 font-medium">{m.value}</span>
                 </div>
                 <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                   <div className="h-full rounded-full" style={{ width: `${m.pct}%`, backgroundColor: m.color }} />

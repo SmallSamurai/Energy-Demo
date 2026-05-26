@@ -96,7 +96,7 @@ function SolarCalc() {
 
       <div className="col-span-2 space-y-4">
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h3 className="text-white font-semibold text-sm mb-1">25-Year Cumulative Cashflow</h3>
+          <h3 className="text-gray-900 font-semibold text-sm mb-1">25-Year Cumulative Cashflow</h3>
           <p className="text-gray-600 text-xs mb-4">Break-even at Year {breakEvenYear} · IRR ~{(100 / payback * 0.85).toFixed(0)}%</p>
           <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={cashflowData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
@@ -117,7 +117,7 @@ function SolarCalc() {
         </div>
 
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h3 className="text-white font-semibold text-sm mb-1">Annual Revenue Breakdown</h3>
+          <h3 className="text-gray-900 font-semibold text-sm mb-1">Annual Revenue Breakdown</h3>
           <p className="text-gray-600 text-xs mb-4">Self-consumption saving vs. export revenue</p>
           <div className="flex gap-8">
             <div className="flex-1">
@@ -192,7 +192,7 @@ function BessCalc() {
       <div className="col-span-2 space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-white rounded-xl p-5 border border-gray-200">
-            <h3 className="text-white font-semibold text-sm mb-1">Revenue Streams</h3>
+            <h3 className="text-gray-900 font-semibold text-sm mb-1">Revenue Streams</h3>
             <p className="text-gray-600 text-xs mb-4">Annual income by source</p>
             <ResponsiveContainer width="100%" height={160}>
               <BarChart data={revenueData} layout="vertical" margin={{ top: 5, right: 10, bottom: 0, left: 20 }}>
@@ -207,7 +207,7 @@ function BessCalc() {
           </div>
 
           <div className="bg-white rounded-xl p-5 border border-gray-200">
-            <h3 className="text-white font-semibold text-sm mb-1">Tariff Spread Sensitivity</h3>
+            <h3 className="text-gray-900 font-semibold text-sm mb-1">Tariff Spread Sensitivity</h3>
             <p className="text-gray-600 text-xs mb-4">Revenue vs. peak/off-peak spread</p>
             <ResponsiveContainer width="100%" height={160}>
               <LineChart data={sensitivityData} margin={{ top: 5, right: 10, bottom: 0, left: 0 }}>
@@ -222,13 +222,13 @@ function BessCalc() {
         </div>
 
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h3 className="text-white font-semibold text-sm mb-2">Revenue Breakdown Detail</h3>
+          <h3 className="text-gray-900 font-semibold text-sm mb-2">Revenue Breakdown Detail</h3>
           <div className="grid grid-cols-3 gap-4 text-sm">
             {revenueData.map((r, i) => (
               <div key={r.name} className="bg-white rounded-lg p-3 border border-gray-200">
                 <div className="w-2 h-2 rounded-full mb-2" style={{ backgroundColor: COLORS[i] }} />
                 <p className="text-gray-600 text-xs">{r.name}</p>
-                <p className="text-white font-bold mt-1">${(r.value / 1000).toFixed(1)}k/yr</p>
+                <p className="text-gray-900 font-bold mt-1">${(r.value / 1000).toFixed(1)}k/yr</p>
                 <p className="text-gray-600 text-[10px]">{((r.value / totalRevenue) * 100).toFixed(0)}% of total</p>
               </div>
             ))}
@@ -281,7 +281,7 @@ function PpaCalc() {
       </div>
       <div className="col-span-2 space-y-4">
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h3 className="text-white font-semibold text-sm mb-1">PPA vs. Market Price Over Contract Term</h3>
+          <h3 className="text-gray-900 font-semibold text-sm mb-1">PPA vs. Market Price Over Contract Term</h3>
           <p className="text-gray-600 text-xs mb-4">Assumes 4% market escalation vs. {escalator}% PPA escalator</p>
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={termData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
@@ -295,7 +295,7 @@ function PpaCalc() {
           </ResponsiveContainer>
         </div>
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h3 className="text-white font-semibold text-sm mb-1">Annual Saving vs. Market</h3>
+          <h3 className="text-gray-900 font-semibold text-sm mb-1">Annual Saving vs. Market</h3>
           <ResponsiveContainer width="100%" height={150}>
             <BarChart data={termData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" vertical={false} />
@@ -349,7 +349,7 @@ function HvacCalc() {
       </div>
       <div className="col-span-2">
         <div className="bg-white rounded-xl p-5 border border-gray-200 h-full">
-          <h3 className="text-white font-semibold text-sm mb-1">Monthly Flexibility Revenue</h3>
+          <h3 className="text-gray-900 font-semibold text-sm mb-1">Monthly Flexibility Revenue</h3>
           <p className="text-gray-600 text-xs mb-4">Higher in summer (cooling) and winter (heating) peaks</p>
           <ResponsiveContainer width="100%" height={280}>
             <BarChart data={monthlyData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
@@ -410,29 +410,29 @@ function EvCalc() {
       </div>
       <div className="col-span-2">
         <div className="bg-white rounded-xl p-5 border border-gray-200 h-full">
-          <h3 className="text-white font-semibold text-sm mb-1">Smart vs. Unmanaged Charging Cost</h3>
+          <h3 className="text-gray-900 font-semibold text-sm mb-1">Smart vs. Unmanaged Charging Cost</h3>
           <p className="text-gray-600 text-xs mb-4">{offPeakPct}% off-peak charging shifts ${(annualSaving / 1000).toFixed(0)}k/yr in cost</p>
           <div className="flex gap-8 items-end mb-6">
             <CostBar label="Unmanaged" value={dumbCost} max={dumbCost} color="#DD1D21" />
             <CostBar label="Smart charging" value={smartCost} max={dumbCost} color="#8B5CF6" />
             <div className="text-center pb-2">
               <p className="text-gray-600 text-xs mb-1">Annual saving</p>
-              <p className="text-3xl font-bold text-green-400">${(annualSaving / 1000).toFixed(0)}k</p>
+              <p className="text-3xl font-bold text-green-600">${(annualSaving / 1000).toFixed(0)}k</p>
               <p className="text-gray-600 text-xs">{((annualSaving / dumbCost) * 100).toFixed(0)}% reduction</p>
             </div>
           </div>
           <div className="grid grid-cols-3 gap-3 text-xs">
             <div className="bg-white rounded-lg p-3 border border-gray-200">
               <p className="text-gray-600">Total annual kWh</p>
-              <p className="text-white font-bold mt-1">{(annualKwh / 1000).toFixed(0)} MWh</p>
+              <p className="text-gray-900 font-bold mt-1">{(annualKwh / 1000).toFixed(0)} MWh</p>
             </div>
             <div className="bg-white rounded-lg p-3 border border-gray-200">
               <p className="text-gray-600">Off-peak kWh</p>
-              <p className="text-white font-bold mt-1">{(offPeakKwh / 1000).toFixed(0)} MWh ({offPeakPct}%)</p>
+              <p className="text-gray-900 font-bold mt-1">{(offPeakKwh / 1000).toFixed(0)} MWh ({offPeakPct}%)</p>
             </div>
             <div className="bg-white rounded-lg p-3 border border-gray-200">
               <p className="text-gray-600">Cost per vehicle</p>
-              <p className="text-white font-bold mt-1">${(smartCost / vehicles).toFixed(0)}/yr</p>
+              <p className="text-gray-900 font-bold mt-1">${(smartCost / vehicles).toFixed(0)}/yr</p>
             </div>
           </div>
         </div>
@@ -479,7 +479,7 @@ function EfficiencyCalc() {
       </div>
       <div className="col-span-2">
         <div className="bg-white rounded-xl p-5 border border-gray-200 h-full">
-          <h3 className="text-white font-semibold text-sm mb-1">Typical Saving Breakdown by Category</h3>
+          <h3 className="text-gray-900 font-semibold text-sm mb-1">Typical Saving Breakdown by Category</h3>
           <p className="text-gray-600 text-xs mb-4">Based on Shell Energy US DOE Better Buildings benchmarks</p>
           <div className="space-y-4">
             {breakdownData.map((d, i) => (
@@ -491,7 +491,7 @@ function EfficiencyCalc() {
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="text-gray-600">{d.pct}%</span>
-                    <span className="text-white font-medium w-20 text-right">${(d.saving / 1000).toFixed(0)}k/yr</span>
+                    <span className="text-gray-900 font-medium w-20 text-right">${(d.saving / 1000).toFixed(0)}k/yr</span>
                   </div>
                 </div>
                 <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
@@ -501,7 +501,7 @@ function EfficiencyCalc() {
             ))}
             <div className="border-t border-gray-200 pt-3 flex justify-between text-sm">
               <span className="text-gray-600">Total annual saving</span>
-              <span className="text-white font-bold">${(annualSaving / 1000).toFixed(0)}k ({reductionPct}%)</span>
+              <span className="text-gray-900 font-bold">${(annualSaving / 1000).toFixed(0)}k ({reductionPct}%)</span>
             </div>
           </div>
         </div>
@@ -517,7 +517,7 @@ function CalcPanel({ title, icon, children }: { title: string; color?: string; i
     <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
       <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-200">
         <span>{icon}</span>
-        <h3 className="text-white font-semibold text-sm">{title}</h3>
+        <h3 className="text-gray-900 font-semibold text-sm">{title}</h3>
       </div>
       <div className="p-4 space-y-4">{children}</div>
     </div>
@@ -562,7 +562,7 @@ function RevenueBar({ label, value, total, color }: { label: string; value: numb
       <p className="text-gray-600 text-xs mb-2">{label}</p>
       <div className="flex items-end gap-2">
         <div className="w-16 rounded-t-lg" style={{ height: `${(value / total) * 120}px`, backgroundColor: color }} />
-        <p className="text-white text-sm font-bold pb-1">${(value / 1000).toFixed(0)}k/yr</p>
+        <p className="text-gray-900 text-sm font-bold pb-1">${(value / 1000).toFixed(0)}k/yr</p>
       </div>
     </div>
   )
@@ -571,7 +571,7 @@ function RevenueBar({ label, value, total, color }: { label: string; value: numb
 function CostBar({ label, value, max, color }: { label: string; value: number; max: number; color: string }) {
   return (
     <div className="flex flex-col items-center gap-2">
-      <p className="text-white text-sm font-bold">${(value / 1000).toFixed(0)}k</p>
+      <p className="text-gray-900 text-sm font-bold">${(value / 1000).toFixed(0)}k</p>
       <div className="w-16 rounded-t-lg" style={{ height: `${(value / max) * 120}px`, backgroundColor: color }} />
       <p className="text-gray-600 text-xs">{label}</p>
     </div>

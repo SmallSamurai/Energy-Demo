@@ -42,7 +42,7 @@ export default function Portfolio() {
       <div className="grid grid-cols-2 gap-4">
         {/* P&L Waterfall */}
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h2 className="text-white font-semibold text-sm mb-1">MTD P&L Attribution</h2>
+          <h2 className="text-gray-900 font-semibold text-sm mb-1">MTD P&L Attribution</h2>
           <p className="text-gray-600 text-xs mb-4">Waterfall by product and cost category</p>
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={pnlWaterfall} margin={{ top: 5, right: 10, bottom: 20, left: 10 }}>
@@ -66,7 +66,7 @@ export default function Portfolio() {
 
         {/* Positions table */}
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h2 className="text-white font-semibold text-sm mb-1">Open Positions</h2>
+          <h2 className="text-gray-900 font-semibold text-sm mb-1">Open Positions</h2>
           <p className="text-gray-600 text-xs mb-4">Mark-to-market as of now</p>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
@@ -85,17 +85,17 @@ export default function Portfolio() {
                   const pnlPositive = p.pnl >= 0
                   return (
                     <tr key={i} className="hover:bg-gray-100/50 transition-colors">
-                      <td className="py-2.5 text-white font-medium">{p.product}</td>
+                      <td className="py-2.5 text-gray-900 font-medium">{p.product}</td>
                       <td className="py-2.5 text-gray-600">{p.period}</td>
                       <td className="py-2.5 text-right">
-                        <span className={`flex items-center justify-end gap-1 ${p.type === 'long' ? 'text-green-400' : 'text-red-400'}`}>
+                        <span className={`flex items-center justify-end gap-1 ${p.type === 'long' ? 'text-green-600' : 'text-red-500'}`}>
                           {p.type === 'long' ? <ArrowUpRight size={11} /> : <ArrowDownRight size={11} />}
                           {Math.abs(p.volume)}
                         </span>
                       </td>
                       <td className="py-2.5 text-right text-gray-600">{p.avgPrice}</td>
-                      <td className="py-2.5 text-right text-white">{p.marketPrice}</td>
-                      <td className={`py-2.5 text-right font-medium ${pnlPositive ? 'text-green-400' : 'text-red-400'}`}>
+                      <td className="py-2.5 text-right text-gray-900">{p.marketPrice}</td>
+                      <td className={`py-2.5 text-right font-medium ${pnlPositive ? 'text-green-600' : 'text-red-500'}`}>
                         {pnlPositive ? '+' : ''}${(p.pnl / 1000).toFixed(1)}k
                       </td>
                     </tr>
@@ -110,14 +110,14 @@ export default function Portfolio() {
       <div className="grid grid-cols-3 gap-4">
         {/* Hedge ratios */}
         <div className="bg-white rounded-xl p-5 border border-gray-200">
-          <h2 className="text-white font-semibold text-sm mb-1">Hedge Ratios</h2>
+          <h2 className="text-gray-900 font-semibold text-sm mb-1">Hedge Ratios</h2>
           <p className="text-gray-600 text-xs mb-4">% of exposure hedged by product</p>
           <div className="space-y-4">
             {hedgeData.map(h => (
               <div key={h.product}>
                 <div className="flex justify-between text-xs mb-1.5">
                   <span className="text-gray-600">{h.product}</span>
-                  <span className="text-white font-medium">{h.hedged}%</span>
+                  <span className="text-gray-900 font-medium">{h.hedged}%</span>
                 </div>
                 <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                   <div className="h-full rounded-full bg-gradient-to-r from-[#FBCE07] to-[#F59E0B]" style={{ width: `${h.hedged}%` }} />
@@ -133,7 +133,7 @@ export default function Portfolio() {
 
         {/* Exposure heatmap */}
         <div className="col-span-2 bg-white rounded-xl p-5 border border-gray-200">
-          <h2 className="text-white font-semibold text-sm mb-1">Exposure Heatmap</h2>
+          <h2 className="text-gray-900 font-semibold text-sm mb-1">Exposure Heatmap</h2>
           <p className="text-gray-600 text-xs mb-4">Risk concentration by period and commodity (0–100 scale)</p>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
@@ -162,7 +162,7 @@ export default function Portfolio() {
 
       {/* VaR */}
       <div className="bg-white rounded-xl p-5 border border-gray-200">
-        <h2 className="text-white font-semibold text-sm mb-1">Value at Risk (VaR) by Horizon</h2>
+        <h2 className="text-gray-900 font-semibold text-sm mb-1">Value at Risk (VaR) by Horizon</h2>
         <p className="text-gray-600 text-xs mb-4">95% confidence interval — potential loss by commodity</p>
         <ResponsiveContainer width="100%" height={180}>
           <BarChart data={varData} margin={{ top: 5, right: 10, bottom: 0, left: 10 }}>
@@ -185,12 +185,12 @@ function KpiTile({ label, value, change, positive }: { label: string; value: str
     <div className="bg-white rounded-xl p-4 border border-gray-200">
       <div className="flex items-center justify-between mb-2">
         <span className="text-gray-600 text-xs">{label}</span>
-        <span className={`text-xs flex items-center gap-0.5 ${positive ? 'text-green-400' : 'text-red-400'}`}>
+        <span className={`text-xs flex items-center gap-0.5 ${positive ? 'text-green-600' : 'text-red-500'}`}>
           {positive ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
           {change > 0 ? '+' : ''}{change}%
         </span>
       </div>
-      <div className="text-2xl font-bold text-white">{value}</div>
+      <div className="text-2xl font-bold text-gray-900">{value}</div>
     </div>
   )
 }
@@ -213,9 +213,9 @@ function PnlTooltip({ active, payload, label }: any) {
   return (
     <div className="bg-gray-100 border border-gray-200 rounded-lg px-3 py-2 text-xs">
       <p className="text-gray-600 mb-1">{label}</p>
-      {entry && <p className="text-white font-medium">P&L: ${(entry.cumulative / 1000).toFixed(1)}k</p>}
+      {entry && <p className="text-gray-900 font-medium">P&L: ${(entry.cumulative / 1000).toFixed(1)}k</p>}
       {entry && entry.type !== 'base' && entry.type !== 'total' && (
-        <p className={entry.type === 'positive' ? 'text-green-400' : 'text-red-400'}>
+        <p className={entry.type === 'positive' ? 'text-green-600' : 'text-red-500'}>
           Δ {entry.type === 'positive' ? '+' : ''}${(entry.value / 1000).toFixed(1)}k
         </p>
       )}

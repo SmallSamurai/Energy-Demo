@@ -28,7 +28,7 @@ export default function MarketOverview() {
       <div className="grid grid-cols-4 gap-4">
         <KpiCard icon={<Zap size={18} />} label="ERCOT Power Day-Ahead" value="$115.20" unit="/MWh" change={+6.7} sub="Peak: $187.40 @ 18:30" accent={YELLOW} />
         <KpiCard icon={<Flame size={18} />} label="Henry Hub Gas" value="3.82" unit="$/MMBtu" change={+2.7} sub="Winter fwd: 4.12 $/MMBtu" accent={BLUE} />
-        <KpiCard icon={<Leaf size={18} />} label="CA Carbon" value="€65.10" unit="/t" change={+2.6} sub="Dec-25 settlement" accent={GREEN} />
+        <KpiCard icon={<Leaf size={18} />} label="CA Carbon" value="$32.15" unit="/t" change={+2.6} sub="Dec-25 settlement" accent={GREEN} />
         <KpiCard icon={<TrendingUp size={18} />} label="System Net Imbalance" value="-420 MW" unit="" change={-1.2} sub="BM cashout: $142/MWh" accent={PURPLE} />
       </div>
 
@@ -38,7 +38,7 @@ export default function MarketOverview() {
         <div className="col-span-2 bg-white rounded-xl p-5 border border-gray-200">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-white font-semibold text-sm">ERCOT Power — Intraday Price</h2>
+              <h2 className="text-gray-900 font-semibold text-sm">ERCOT Power — Intraday Price</h2>
               <p className="text-gray-600 text-xs mt-0.5">Half-hourly settlement prices vs. forecast ($/MWh)</p>
             </div>
             <div className="flex items-center gap-3 text-xs">
@@ -54,7 +54,7 @@ export default function MarketOverview() {
                   <stop offset="95%" stopColor={YELLOW} stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
+              <CartesianGrid strokeDasharray="3 3" stroke='#E5E7EB' />
               <XAxis dataKey="time" tickFormatter={fmt} tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} interval={5} />
               <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${v}`} />
               <Tooltip content={<CustomTooltip unit="$/MWh" />} />
@@ -69,8 +69,8 @@ export default function MarketOverview() {
         <div className="bg-white rounded-xl p-5 border border-gray-200">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-white font-semibold text-sm">CA Carbon</h2>
-              <p className="text-gray-600 text-xs mt-0.5">€/tonne CO₂</p>
+              <h2 className="text-gray-900 font-semibold text-sm">CA Carbon</h2>
+              <p className="text-gray-600 text-xs mt-0.5">$/tonne CO₂</p>
             </div>
           </div>
           <ResponsiveContainer width="100%" height={220}>
@@ -81,10 +81,10 @@ export default function MarketOverview() {
                   <stop offset="95%" stopColor={GREEN} stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
+              <CartesianGrid strokeDasharray="3 3" stroke='#E5E7EB' />
               <XAxis dataKey="time" tickFormatter={fmt} tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} interval={8} />
-              <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `€${v}`} />
-              <Tooltip content={<CustomTooltip unit="€/t" />} />
+              <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={v => `$${v}`} />
+              <Tooltip content={<CustomTooltip unit="$/t" />} />
               <Area type="monotone" dataKey="value" stroke={GREEN} strokeWidth={2} fill="url(#carbonGrad)" dot={false} name="CA Carbon" />
             </AreaChart>
           </ResponsiveContainer>
@@ -97,7 +97,7 @@ export default function MarketOverview() {
         <div className="col-span-2 bg-white rounded-xl p-5 border border-gray-200">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-white font-semibold text-sm">Forward Curve — Monthly Settlements</h2>
+              <h2 className="text-gray-900 font-semibold text-sm">Forward Curve — Monthly Settlements</h2>
               <p className="text-gray-600 text-xs mt-0.5">Gas ($/MMBtu), Power ($/MWh), Carbon ($/t)</p>
             </div>
             <div className="flex items-center gap-3 text-xs">
@@ -108,7 +108,7 @@ export default function MarketOverview() {
           </div>
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={forwardCurve} margin={{ top: 5, right: 10, bottom: 0, left: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
+              <CartesianGrid strokeDasharray="3 3" stroke='#E5E7EB' />
               <XAxis dataKey="month" tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} />
               <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} />
               <Tooltip content={<ForwardTooltip />} />
@@ -121,7 +121,7 @@ export default function MarketOverview() {
 
         {/* Alerts panel */}
         <div className="bg-white rounded-xl p-5 border border-gray-200 flex flex-col">
-          <h2 className="text-white font-semibold text-sm mb-4">Live Alerts</h2>
+          <h2 className="text-gray-900 font-semibold text-sm mb-4">Live Alerts</h2>
           <div className="space-y-3 flex-1 overflow-y-auto">
             {alerts.map(alert => (
               <AlertItem key={alert.id} alert={alert} />
@@ -134,7 +134,7 @@ export default function MarketOverview() {
       <div className="bg-white rounded-xl p-5 border border-gray-200">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-white font-semibold text-sm">Henry Hub Gas — Intraday</h2>
+            <h2 className="text-gray-900 font-semibold text-sm">Henry Hub Gas — Intraday</h2>
             <p className="text-gray-600 text-xs mt-0.5">$/MMBtu</p>
           </div>
           <div className="flex items-center gap-3 text-xs">
@@ -150,7 +150,7 @@ export default function MarketOverview() {
                 <stop offset="95%" stopColor={BLUE} stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
+            <CartesianGrid strokeDasharray="3 3" stroke='#E5E7EB' />
             <XAxis dataKey="time" tickFormatter={fmt} tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} interval={5} />
             <YAxis tick={{ fill: '#4B5563', fontSize: 10 }} tickLine={false} axisLine={false} />
             <Tooltip content={<CustomTooltip unit="$/MMBtu" />} />
@@ -172,12 +172,12 @@ function KpiCard({ icon, label, value, unit, change, sub, accent }: {
     <div className="bg-white rounded-xl p-4 border border-gray-200">
       <div className="flex items-start justify-between mb-3">
         <div style={{ color: accent }}>{icon}</div>
-        <span className={`flex items-center gap-1 text-xs font-medium ${positive ? 'text-green-400' : 'text-red-400'}`}>
+        <span className={`flex items-center gap-1 text-xs font-medium ${positive ? 'text-green-600' : 'text-red-500'}`}>
           {positive ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
           {positive ? '+' : ''}{change}%
         </span>
       </div>
-      <div className="text-2xl font-bold text-white mb-0.5">{value}<span className="text-sm text-gray-600 ml-1 font-normal">{unit}</span></div>
+      <div className="text-2xl font-bold text-gray-900 mb-0.5">{value}<span className="text-sm text-gray-600 ml-1 font-normal">{unit}</span></div>
       <div className="text-gray-600 text-xs mb-1">{label}</div>
       <div className="text-gray-600 text-[10px]">{sub}</div>
     </div>
@@ -185,7 +185,7 @@ function KpiCard({ icon, label, value, unit, change, sub, accent }: {
 }
 
 function AlertItem({ alert }: { alert: typeof alerts[0] }) {
-  const icons = { critical: <AlertCircle size={14} className="text-red-400 flex-shrink-0 mt-0.5" />, warning: <AlertTriangle size={14} className="text-yellow-400 flex-shrink-0 mt-0.5" />, info: <Info size={14} className="text-blue-400 flex-shrink-0 mt-0.5" /> }
+  const icons = { critical: <AlertCircle size={14} className="text-red-500 flex-shrink-0 mt-0.5" />, warning: <AlertTriangle size={14} className="text-yellow-400 flex-shrink-0 mt-0.5" />, info: <Info size={14} className="text-blue-400 flex-shrink-0 mt-0.5" /> }
   const borders = { critical: 'border-l-red-500', warning: 'border-l-yellow-500', info: 'border-l-blue-500' }
   const mins = Math.round((Date.now() - new Date(alert.timestamp).getTime()) / 60000)
   return (

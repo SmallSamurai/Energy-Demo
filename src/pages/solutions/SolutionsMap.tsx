@@ -45,7 +45,7 @@ export default function SolutionsMap() {
           </div>
         </div>
         <div className="ml-auto text-gray-600 text-xs">
-          <span className="text-white font-semibold">{filtered.length}</span> / {solutions.length} solutions
+          <span className="text-gray-900 font-semibold">{filtered.length}</span> / {solutions.length} solutions
         </div>
       </div>
 
@@ -156,7 +156,7 @@ function ExpandedPanel({ solution: s, onClose, allSolutions }: { solution: Solut
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <h2 className="text-white font-bold text-lg">{s.name}</h2>
+                <h2 className="text-gray-900 font-bold text-lg">{s.name}</h2>
                 <span className="text-[10px] px-2 py-0.5 rounded-full font-medium border"
                   style={{ color: ROLE_COLORS[s.stackRole], borderColor: ROLE_COLORS[s.stackRole] + '40', backgroundColor: ROLE_COLORS[s.stackRole] + '10' }}>
                   {stackRoleLabels[s.stackRole]}
@@ -188,12 +188,12 @@ function ExpandedPanel({ solution: s, onClose, allSolutions }: { solution: Solut
             <div className="bg-white rounded-xl p-4 border border-gray-200">
               <p className="text-[10px] text-gray-600 uppercase tracking-widest mb-2">Case Study</p>
               <div className="flex items-start gap-2">
-                <CheckCircle size={14} className="text-green-400 mt-0.5 flex-shrink-0" />
+                <CheckCircle size={14} className="text-green-600 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-white text-sm font-semibold">{s.caseStudy.name}</p>
+                  <p className="text-gray-900 text-sm font-semibold">{s.caseStudy.name}</p>
                   <p className="text-gray-600 text-xs">{s.caseStudy.industry}</p>
                   <p className="text-gray-700 text-xs mt-1 leading-snug">{s.caseStudy.result}</p>
-                  <p className="text-green-400 text-xs font-semibold mt-1">{s.caseStudy.saving}</p>
+                  <p className="text-green-600 text-xs font-semibold mt-1">{s.caseStudy.saving}</p>
                 </div>
               </div>
             </div>
@@ -216,7 +216,7 @@ function ExpandedPanel({ solution: s, onClose, allSolutions }: { solution: Solut
                     {c.icon}
                   </div>
                   <div>
-                    <p className="text-white text-xs font-medium leading-tight">{c.name}</p>
+                    <p className="text-gray-900 text-xs font-medium leading-tight">{c.name}</p>
                     <p className="text-gray-600 text-[10px]">{stackRoleLabels[c.stackRole]}</p>
                   </div>
                 </div>
